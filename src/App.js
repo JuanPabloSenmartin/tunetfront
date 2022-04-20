@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom"
+import Login from './Pages/login'
+import Register from './Pages/register'
+import NotFound from "./Pages/notFound"
+import LocalHome from "./Pages/localHome"
+import ArtistHome from "./Pages/artistHome"
+import ViewArtistProfile from './Pages/viewArtistProfile'
+import EditArtistProfile from './Pages/editArtistProfile'
+import ViewLocalProfile from './Pages/viewLocalProfile'
+import EditLocalProfile from './Pages/editLocalProfile'
+import Chat from './Pages/chat'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <Router>
+        <Routes>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="localHome" element={<LocalHome />} />
+            <Route path="artistHome" element={<ArtistHome />} />
+            <Route path="viewArtistProfile" element={<ViewArtistProfile/>} />
+            <Route path="editArtistProfile" element={<EditArtistProfile/>} />
+            <Route path="viewLocalProfile" element={<ViewLocalProfile/>} />
+            <Route path="editLocalProfile" element={<EditLocalProfile/>} />
+            <Route path="chat" element={<Chat/>} />
+        </Routes>
+    </Router>
+)
 
-export default App;
+export default App
