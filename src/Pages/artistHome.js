@@ -1,12 +1,21 @@
 import React from "react";
-import ArtistHomeComponent from '../Components/artistHomeComponent'
+import '../Styles/artistHome.css'
+import {useNavigate} from "react-router";
+import { useTokenManager } from "../tokenManager";
 
 
-class ArtistHome extends React.Component {
-    state = {}
-    render(){
-        return <ArtistHomeComponent />
+
+export const ArtistHome = () => {
+    const navigate = useNavigate();
+    const auth = useTokenManager()
+    const token = auth.getToken();
+
+
+    const handleClick = () => {
+        navigate("/editArtistProfile");
     }
+    
+    return (
+        <button  onClick={handleClick}>editar perfil</button>
+    )
 }
-
-export default ArtistHome

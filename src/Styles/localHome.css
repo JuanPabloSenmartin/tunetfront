@@ -1,0 +1,41 @@
+
+.add{
+    max-width: 12%;
+    padding: 15px 32px;
+    float: left;
+}
+
+.div1{
+    width: 1400px;
+    height: 300px;
+}
+.div2{
+    width: 1400px;
+    height: 100px;
+}
+.div3{
+    width: 1400px;
+    height: auto;
+}
+
+
+.configIcon {
+    max-width: 12%;
+    padding: 15px 32px;
+    float: right;
+}
+
+.Configslide {
+    clear:both;
+    width:100%;
+    height:50px;
+    overflow: hidden;
+    text-align: center;
+    transition: height .4s ease;
+    float:right;
+}
+
+
+
+
+

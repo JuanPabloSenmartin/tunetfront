@@ -1,10 +1,7 @@
 import React from "react";
+import '../Styles/chat.css'
 
 
-class Chat extends React.Component {
-    render(){
-        return 'CHAT'
-    }
+export const Chat = () => {
+    return ('chat')
 }
-
-export default Chat

@@ -1,10 +1,7 @@
 import React from "react";
+import '../Styles/viewLocalProfile.css'
 
 
-class ViewLocalProfile extends React.Component {
-    render(){
-        return "HOLA"
-    }
+export const ViewLocalProfile = () => {
+    return "ViewLocalProfile"
 }
-
-export default ViewLocalProfile

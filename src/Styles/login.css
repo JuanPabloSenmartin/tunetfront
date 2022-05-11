@@ -18,6 +18,7 @@ select {
   color: #4c4c4c;
 }
 
+
 p {
   font-size: 12px;
   width: 150px;
@@ -33,9 +34,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-html{
-  background-color: #8860D0;
-}
+
 
 .testbox {
   margin: 20px auto;
@@ -112,7 +111,7 @@ input[type=password]{
 
 
 
-button {
+.subButton {
   font-size: 14px;
   font-weight: 600;
   text-align:center;
@@ -135,11 +134,19 @@ button {
   position: relative;
 }
 
-button:hover {
+.subButton:hover {
   top: 3px;
   background-color:#8860D0;
   -webkit-box-shadow: none; 
   -moz-box-shadow: none; 
   box-shadow: none;
   
+}
+
+.alertWarning {
+  margin-top: 50px;
+  font-size: 130%;
+  font-style: italic;
+  color: red;
+  text-align: center;
 }

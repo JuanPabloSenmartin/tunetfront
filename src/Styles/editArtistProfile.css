@@ -1,0 +1,83 @@
+.successArt {
+    margin-top: 50px;
+    font-size: 130%;
+    font-style: italic;
+    color: green;
+    text-align: center;
+  }
+
+.titleEditProf {
+    font-family:"Helvetica", "Arial", sans-serif;
+    text-align: center;
+    background: blue;
+    padding: 20px;
+    width: 80%;
+    border-radius: 25px;
+    margin:auto;
+    
+}
+.profForm{
+  margin-top: 70px;
+}
+
+.profh1 {
+  color: black;
+}
+
+.profLabel {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 130%;
+  color: black;
+  width: 170px;
+}
+
+
+.DescriptionLabel {
+  display:block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: black;
+  font-size: 130%;
+}
+
+
+.profile-Pic{
+    flex-direction: column;
+    display: flex;
+    float: right;
+    margin-right: 100px;
+    justify-items: center;
+
+}
+
+
+.change-Profile-Picture{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-Settings{
+    display: flex;
+    float: left;
+    flex-direction: column;
+    margin-right: 100px;
+}
+
+.submitButtonEditProf{
+  position: absolute;
+  bottom:   0;
+  right: 0;
+  margin-bottom: 30px;
+  margin-right: 30px;
+  width: 10%;
+  height: 5%;
+  border-radius: 25px;
+}
+
+.MusicSample{
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  
+}

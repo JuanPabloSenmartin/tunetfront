@@ -1,0 +1,23 @@
+.successLoc {
+    margin-top: 50px;
+    font-size: 130%;
+    font-style: italic;
+    color: green;
+    text-align: center;
+  }
+
+  .imagesProf{
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .imgLocalProf{
+    max-width: 12%;
+    float:left;
+  }
+  .imagesh1{
+    color: black;
+    float: left;
+    margin-right: 20px;
+  }
