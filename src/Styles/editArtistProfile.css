@@ -6,6 +6,10 @@
     text-align: center;
   }
 
+  input[type='file'] {
+    color: transparent;
+  }
+
 .titleEditProf {
     font-family:"Helvetica", "Arial", sans-serif;
     text-align: center;
@@ -64,7 +68,15 @@
     margin-right: 100px;
 }
 
-.submitButtonEditProf{
+
+
+.MusicSample{
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+}
+
+.submitButtonEdit{
   position: absolute;
   bottom:   0;
   right: 0;
@@ -73,11 +85,4 @@
   width: 10%;
   height: 5%;
   border-radius: 25px;
-}
-
-.MusicSample{
-  position: absolute;
-  bottom: 0;
-  margin: auto;
-  
 }

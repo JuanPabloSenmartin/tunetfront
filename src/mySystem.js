@@ -40,6 +40,22 @@ const MySystem = {
         })
     },
 
+    logout: (token , okCallback, errorCallback) => {
+        fetch(`${restApiEndpoint}/login`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+        }).then(resp => {
+            if (resp.status === 201) {
+                okCallback()
+            }
+            else {
+                errorCallback("Unable to logout")
+            }
+        }).catch(e => errorCallback("Unable to connect to My System API"))
+    },
     /* 
     listUsers: (token, okCallback, errorCallback) => {
         fetch(`${restApiEndpoint}/users`, {
@@ -57,9 +73,9 @@ const MySystem = {
         })
     },
     */
-    getPostList: async (token, okCallback, errorCallback) => {
+    getPosts: async (token, okCallback, errorCallback) => {
         fetch(`${restApiEndpoint}/posts`, {
-            method: 'GET',
+            method: 'POST',
             
             headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +83,7 @@ const MySystem = {
             body: JSON.stringify(token)
         }).then(resp => {
             if (resp.status === 201) {
-                okCallback()
+                resp.json().then(body => okCallback(body))
             } else {
                 errorCallback()
             }
@@ -122,7 +138,95 @@ const MySystem = {
                 errorCallback()
             }
         })
-    }
+    },
+
+
+    persistPost: async (post, okCallback, errorCallback, uncompleteFormErrorCallback) => {
+       fetch(`${restApiEndpoint}/post`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(post)
+       }).then(resp => {
+           if (resp.status === 201) {
+               okCallback()
+           } else if (resp.status === 409) {
+               errorCallback()
+           } else {
+               uncompleteFormErrorCallback()
+           }
+       })
+   },
+   getMailfromToken: async (token, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/mail`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(token)
+       }).then(resp => {
+           if (resp.status === 201) {
+               resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
+   },
+    
+   addArtistToPostList: async (data, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/artistList`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(data)
+       }).then(resp => {
+           if (resp.status === 201) {
+               okCallback()
+           } else {
+               errorCallback()
+           }
+       })
+   },
+
+   getArtistList: async (postID, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/getArtistList`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(postID)
+       }).then(resp => {
+           if (resp.status === 201) {
+               resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
+   },
+
+   getAllPosts: async (token, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/getAllPosts`, {
+           method: 'GET',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           }
+       }).then(resp => {
+           if (resp.status === 201) {
+               resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
+   }
+
+   
     
 }
 

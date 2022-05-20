@@ -19,34 +19,48 @@ const App = () => (
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
-            {
-                /*
-                <Route 
-                path="localHome" 
-                element={
-                    <RequireAuth>
-                        <LocalHome />
-                    </RequireAuth>
-                } 
-            />
-            <Route 
-                path="artistHome" 
-                element={
-                    <RequireAuth>
-                        <ArtistHome />
-                    </RequireAuth>
-                } 
-            />
-                */
-            }
-            <Route path="localHome" element={<LocalHome />}/>
-            <Route path="artistHome" element={<ArtistHome />}/>
-            <Route path="viewArtistProfile" element={<ViewArtistProfile/>} />
-            <Route path="editArtistProfile" element={<EditArtistProfile/>} />
-            <Route path="viewLocalProfile" element={<ViewLocalProfile/>} />
-            <Route path="editLocalProfile" element={<EditLocalProfile/>} />
-            <Route path="chat" element={<Chat/>} />
-            <Route path="createPost" element={<CreatePost/>} />
+            
+            <Route path="localHome" element={
+                <RequireAuth>
+                    <LocalHome />
+                </RequireAuth>
+            } />
+            <Route path="artistHome" element={
+                <RequireAuth>
+                    <ArtistHome />
+                </RequireAuth>
+            } />
+
+            <Route path="viewArtistProfile" element={
+                <RequireAuth>
+                    <ViewArtistProfile/>
+                </RequireAuth>
+            } />
+            <Route path="editArtistProfile" element={
+                <RequireAuth>
+                    <EditArtistProfile/>
+                </RequireAuth>
+            } />
+            <Route path="viewLocalProfile" element={
+                <RequireAuth>
+                    <ViewLocalProfile/>
+                </RequireAuth>
+            } />
+            <Route path="editLocalProfile" element={
+                <RequireAuth>
+                    <EditLocalProfile/>
+                </RequireAuth>
+            } />
+            <Route path="chat" element={
+                <RequireAuth>
+                    <Chat/>
+                </RequireAuth>
+            } />
+            <Route path="createPost" element={
+                <RequireAuth>
+                    <CreatePost/>
+                </RequireAuth>
+            } />
         </Routes>
     
 )

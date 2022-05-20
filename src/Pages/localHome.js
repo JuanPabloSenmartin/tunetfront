@@ -7,6 +7,7 @@ import {Post} from '../Components/post'
 import {useMySystem} from "../mySystem";
 import {useNavigate} from "react-router";
 import {useTokenManager} from "../tokenManager"
+import { LogOut } from "../Components/logOut";
 
 
 
@@ -16,31 +17,38 @@ export const LocalHome = () => {
     const auth = useTokenManager()
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [posts, setPosts] = useState([])
+    
+    const [selectedPost, setSelectedPost] = useState(undefined)
     const token = auth.getToken();
 
     useEffect(() => {
         const color = "#8860D0";
         document.body.style.background = color;
-        //fetchPosts();
+        fetchPosts()
     }, [])
     
-    const signOut = () => {
-        console.log(token)
-        auth.removeToken();
-        navigate("/login");
-    }
+    
 
     const fetchPosts = () => {
-        mySystem.getPostList(token, (posts) => setPosts(posts), () => setErrorMsg('ERROR'));
+        mySystem.getPosts(token,
+             (p) => {
+                 setPosts(p)
+            },
+              () => setErrorMsg('ERROR'));
     }
 
     const handleClick = () => {
         navigate("/editLocalProfile");
     }
 
+    
+
 
     const data = [{
+        "id" : "1",
         "title": "test1",
+        "date" : "date1",
+        "description": "desc1",
         "artistList": [{
             "name": "juampi",
             "mail": "gg"
@@ -50,8 +58,11 @@ export const LocalHome = () => {
             "mail": "juampi.sen2"
         }]
     },
-    {
+    {   
+        "id" : "2",
         "title": "test2",
+        "date" : "date2",
+        "description": "desc2",
         "artistList": [{
             "name": "julian",
             "mail": "julia@"
@@ -61,10 +72,11 @@ export const LocalHome = () => {
         <div >
             <div className="div1">
                 <Link to="/createPost"><img src={NewPostIcon} className="add"/> </Link>
+                <LogOut/>
                 <div className="dropdown">
                     
                 </div>
-                <button onClick={handleClick}>Edit Profile</button>
+                <button onClick={handleClick}>Edit Profile</button> 
             </div>
             <div className="div2">
                 <h2>My posts</h2>
@@ -72,9 +84,11 @@ export const LocalHome = () => {
             <div className="div3">
 
                 <h1>ACA ESTAN LOS POSTS</h1>
-                {data.map((info) => {
+                {posts.map((info) => {
                     return(
-                        <Post key={info.title} title={info.title}  artistList={info.artistList} />
+                        <div>
+                            <Post setSelectedPost={setSelectedPost}  post={info} opened={selectedPost && info.id === selectedPost.id} key={info.id}  />
+                        </div>
                     )
                 })}
                 
