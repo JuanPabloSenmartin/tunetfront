@@ -3,9 +3,7 @@ import {useMySystem} from "../mySystem";
 import {useNavigate} from "react-router";
 import { useTokenManager } from "../tokenManager";
 import '../Styles/editLocalProfile.css'
-import DefaultProfilePicture from '../Images/defaultProfilePicture.png'
-import UniversidadAustral from '../Images/universidadAustral.jpg'
-import FileBase64 from 'react-file-base64';
+import { useBase64Helper } from "../base64";
 
 
 export const EditLocalProfile = () => {
@@ -22,7 +20,8 @@ export const EditLocalProfile = () => {
     const [successMsg, setSuccessMsg] = useState(undefined)
     const navigate = useNavigate();
     const mySystem = useMySystem();
-    var base = ''
+    const Base64Helper = useBase64Helper();
+
 
 
     useEffect(() => {
@@ -61,26 +60,14 @@ export const EditLocalProfile = () => {
 
     const refreshDatabase = (data) => {
         mySystem.refreshDatabaseAfterProfileEdit(data, 
-            () => setSuccessMsg('Your profile has been edited successfully!'), 
+            () => {
+                setSuccessMsg('Your profile has been edited successfully!')
+                navigate("/localHome");
+            }, 
             () => setErrorMsg('Your profile couldn`t be updated due to an error with out API'))
     }
 
-    const convertToBase64 = (file) => {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function() {
-            var aux = [];
-            var base64 = reader.result;
-            //aux = base64.split(',');
-            //var imgInBase64 = aux[1];
-            handleImgInBase64(base64);
-        }
-    }
-    const handleImgInBase64 = (imgInBase64) => {
-        console.log(imgInBase64);
-        setProfilePictureUrl(imgInBase64);
-        base = imgInBase64;
-    }
+    
     
 
     const locationChange = (event) => {
@@ -93,11 +80,17 @@ export const EditLocalProfile = () => {
         setDescription(event.target.value)
     }
     const pictureUrlChange = (event) => {
-        setPictureUrl(event.target.value)
+        Base64Helper.convertToBase64(event.target.files[0],
+            (i) => {
+                setPictureUrl(i)
+            })
     }
     const profilePictureUrlChange = (event) => {
-        console.log(event.target.files[0])
-        //setProfilePictureUrl(event.target.files[0])
+        Base64Helper.convertToBase64(event.target.files[0],
+            (i) => {
+                setProfilePictureUrl(i)
+            })
+        
     }
     const phoneNumberChange = (event) => {
         setPhoneNumber(event.target.value)
@@ -121,7 +114,7 @@ export const EditLocalProfile = () => {
                     <div className="change-Profile-Picture">
                         <input type="file" 
                         title= " "
-                        onChange={(event) => convertToBase64(event.target.files[0])}/>
+                        onChange={profilePictureUrlChange}/>
                     </div>
                 </div>
 
@@ -168,7 +161,12 @@ export const EditLocalProfile = () => {
 
                 <div className="imagesProf">
                     <h1 className="imagesh1">Images</h1>
-                    <img src={UniversidadAustral} className="imgLocalProf"/>
+                    <img src={pictureUrl} className="imgLocalProf"/>
+                    <div className="change-Profile-Picture">
+                        <input type="file" 
+                        title= " "
+                        onChange={pictureUrlChange}/>
+                    </div>
                 </div>
 
                 {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}

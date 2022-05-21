@@ -6,6 +6,7 @@ import '../Styles/editArtistProfile.css'
 import DefaultProfilePicture from '../Images/defaultProfilePicture.png'
 import ReactAudioPlayer from 'react-audio-player';
 import Song from '../mp3/song.mp3'
+import { useBase64Helper } from "../base64";
 
 
 export const EditArtistProfile = () => {
@@ -13,7 +14,7 @@ export const EditArtistProfile = () => {
     const token = auth.getToken();
     
     const [email, setEmail] = useState('')
-    const [videoUrl, setVideoUrl] = useState('')
+    const [audioUrl, setAudioUrl] = useState('')
     const [username, setUsername] = useState('')
     const [description, setDescription] = useState('')
     const [pictureUrl, setPictureUrl] = useState('')
@@ -24,6 +25,7 @@ export const EditArtistProfile = () => {
     const [successMsg, setSuccessMsg] = useState(undefined)
     const navigate = useNavigate();
     const mySystem = useMySystem();
+    const Base64Helper = useBase64Helper();
 
     useEffect(() => {
         const color = "#8860D0";
@@ -35,7 +37,8 @@ export const EditArtistProfile = () => {
         //fetches all information from this user
         mySystem.getProfileData(token, (info) => {
             setEmail(info.email)
-            setVideoUrl(info.videoUrl)
+            setAudioUrl(info.audioUrl)
+            console.log(info.audioUrl)
             setUsername(info.username)
             setDescription(info.description)
             setPictureUrl(info.pictureUrl)
@@ -45,13 +48,15 @@ export const EditArtistProfile = () => {
         }, () => setErrorMsg('ERROR'))
     }
 
+   
+
 
 
     const handleSubmit = async e => {
         e.preventDefault();
         refreshDatabase({
             email: email,
-            artistVideoUrl: videoUrl,
+            artistAudioUrl: audioUrl,
             username: username,
             description: description,
             pictureUrl: pictureUrl,
@@ -63,13 +68,20 @@ export const EditArtistProfile = () => {
 
     const refreshDatabase = (data) => {
         mySystem.refreshDatabaseAfterProfileEdit(data, 
-            () => setSuccessMsg('Your profile has been edited successfully!'), 
+            () => {
+                setSuccessMsg('Your profile has been edited successfully!')
+                navigate("/artistHome");
+            }, 
             () => setErrorMsg('Your profile couldn`t be updated due to an error with out API'))
     }
     
 
-    const videoUrlChange = (event) => {
-        setVideoUrl(event.target.value)
+    const audioUrlChange = (event) => {
+        Base64Helper.convertToBase64(event.target.files[0],
+            (i) => {
+                setAudioUrl(i)
+            })
+        
     }
     const usernameChange = (event) => {
         setUsername(event.target.value)
@@ -78,10 +90,17 @@ export const EditArtistProfile = () => {
         setDescription(event.target.value)
     }
     const pictureUrlChange = (event) => {
-        setPictureUrl(event.target.value)
+        Base64Helper.convertToBase64(event.target.files[0],
+            (i) => {
+                setPictureUrl(i)
+            })
     }
     const profilePictureUrlChange = (event) => {
-        setProfilePictureUrl(event.target.value)
+        Base64Helper.convertToBase64(event.target.files[0],
+            (i) => {
+                setProfilePictureUrl(i)
+            })
+        
     }
     const locationChange = (event) => {
         setLocation(event.target.value)
@@ -89,6 +108,7 @@ export const EditArtistProfile = () => {
     const phoneNumberChange = (event) => {
         setPhoneNumber(event.target.value)
     }
+    
 
     
     return (
@@ -101,12 +121,14 @@ export const EditArtistProfile = () => {
             </div>
             <form onSubmit={handleSubmit} className="profForm">
                 
-                <div className="profile-Pic">
+            <div className="profile-Pic">
                     <div className="item-relative">
-                        <img src={DefaultProfilePicture} />
+                        <img src={profilePictureUrl} />
                     </div>
                     <div className="change-Profile-Picture">
-                        <button>Change profile picture</button>
+                        <input type="file" 
+                        title= " "
+                        onChange={profilePictureUrlChange}/>
                     </div>
                 </div>
 
@@ -156,10 +178,27 @@ export const EditArtistProfile = () => {
 
                 <div>
                 <textarea rows="4" cols="50" type="text" placeholder="Descripcion"/>
+                <div>
                 <ReactAudioPlayer
-                    src={Song}
+                    src={audioUrl}
                     controls
-/>
+                />
+                <div className="change-Audio">
+                        <input type="file" 
+                        title= " "
+                        onChange={audioUrlChange}/>
+                </div>
+                </div>
+
+                <div className="images">
+                    <h1 className="imagesh1">Images</h1>
+                    <img src={pictureUrl} className="imgLocalProf"/>
+                    <div className="change-Profile-Picture">
+                        <input type="file" 
+                        title= " "
+                        onChange={pictureUrlChange}/>
+                    </div>
+                </div>
                 </div>
             </div>
 
