@@ -3,9 +3,7 @@ import {useMySystem} from "../mySystem";
 import {useNavigate} from "react-router";
 import { useTokenManager } from "../tokenManager";
 import '../Styles/editArtistProfile.css'
-import DefaultProfilePicture from '../Images/defaultProfilePicture.png'
 import ReactAudioPlayer from 'react-audio-player';
-import Song from '../mp3/song.mp3'
 import { useBase64Helper } from "../base64";
 
 
@@ -204,35 +202,6 @@ export const EditArtistProfile = () => {
 
                 {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                 {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
-
-                {/*
-                <input type="text"
-                            placeholder="videoUrl"
-                            value={videoUrl}
-                            name="videoUrl"
-                            onChange={videoUrlChange}/>
-                <input type="text"
-                            placeholder="username"
-                            value={username}
-                            name="username"
-                            onChange={usernameChange}/>
-                <input type="text"
-                            placeholder="description"
-                            value={description}
-                            name="description"
-                            onChange={descriptionChange}/>
-                <input type="text"
-                            placeholder="pictureUrl"
-                            value={pictureUrl}
-                            name="pictureUrl"
-                            onChange={pictureUrlChange}/>
-                <input type="text"
-                            placeholder="profilePictureUrl"
-                            value={profilePictureUrl}
-                            name="profilePictureUrl"
-                            onChange={profilePictureUrlChange}/>
-                
-                */}
             </form>
             
         </div>

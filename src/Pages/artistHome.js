@@ -1,7 +1,6 @@
 import React, { useEffect , useState} from "react";
 import '../Styles/artistHome.css'
 import {useNavigate} from "react-router";
-import { useTokenManager } from "../tokenManager";
 import { LogOut } from "../Components/logOut";
 import {useMySystem} from "../mySystem";
 import { PostInArtistFeed } from "../Components/postInArtistFeed";
@@ -11,8 +10,6 @@ import { PostInArtistFeed } from "../Components/postInArtistFeed";
 export const ArtistHome = () => {
     const navigate = useNavigate()
     const mySystem = useMySystem()
-    const auth = useTokenManager()
-    const token = auth.getToken();
     const [posts, setPosts] = useState([])
     const [errorMsg, setErrorMsg] = useState(undefined)
 

@@ -129,7 +129,7 @@ export const EditLocalProfile = () => {
                     </div>
                     <br/>
                     <div>
-                    <label className="profLabel">Location (private)</label>
+                    <label className="profLabel">Location</label>
                         <input type="text"
                             placeholder="Location"
                             value={location}
@@ -173,34 +173,6 @@ export const EditLocalProfile = () => {
                 {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
 
                 <button type="submit" className="submitButtonEditProf">Save Changes</button>
-                {/*
-                <input type="text"
-                            placeholder="location"
-                            value={location}
-                            name="location"
-                            onChange={LocationChange}/>
-                <input type="text"
-                            placeholder="username"
-                            value={username}
-                            name="username"
-                            onChange={usernameChange}/>
-                <input type="text"
-                            placeholder="description"
-                            value={description}
-                            name="description"
-                            onChange={descriptionChange}/>
-                <input type="text"
-                            placeholder="pictureUrl"
-                            value={pictureUrl}
-                            name="pictureUrl"
-                            onChange={pictureUrlChange}/>
-                <input type="text"
-                            placeholder="profilePictureUrl"
-                            value={profilePictureUrl}
-                            name="profilePictureUrl"
-                            onChange={profilePictureUrlChange}/>
-                
-                */}
             </form> 
         </div>
     )

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import '../Styles/postInArtistFeed.css'
 import {useNavigate} from "react-router";
 import {useMySystem} from "../mySystem";
 import {useTokenManager} from "../tokenManager"
+import { Link } from "react-router-dom";
 
 
 
@@ -12,15 +13,14 @@ export const PostInArtistFeed = (props) => {
     const postID = props.post.id;
     const description = props.post.description;
     const date = props.post.date;
+    const mail = props.post.localEmail;
     const navigate = useNavigate();
     const mySystem = useMySystem()
     const auth = useTokenManager()
     const token = auth.getToken();
     const [errorMsg, setErrorMsg] = useState(undefined)
 
-    const handleClick = () => {
-        navigate("/viewLocalProfile")
-    }
+    
 
     const submitApplication = () => {
         mySystem.addArtistToPostList({
@@ -39,7 +39,11 @@ export const PostInArtistFeed = (props) => {
                 <p>PostID : {postID}</p>
                 <p>Description : {description}</p>
                 <p>Date : {date}</p>
-                <button onClick={handleClick}>View Local Profile</button>
+                <Link to="/viewLocalProfile" state={{ mail: mail} } >
+                    <button >
+                        View Profile
+                    </button>
+                </Link>
                 <button onClick={submitApplication}>Submit my application</button>
             </div>
         )
