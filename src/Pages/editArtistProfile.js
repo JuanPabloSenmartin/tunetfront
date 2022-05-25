@@ -36,7 +36,6 @@ export const EditArtistProfile = () => {
         mySystem.getProfileData(token, (info) => {
             setEmail(info.email)
             setAudioUrl(info.audioUrl)
-            console.log(info.audioUrl)
             setUsername(info.username)
             setDescription(info.description)
             setPictureUrl(info.pictureUrl)
@@ -45,10 +44,6 @@ export const EditArtistProfile = () => {
             setPhoneNumber(info.phoneNumber)
         }, () => setErrorMsg('ERROR'))
     }
-
-   
-
-
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -93,6 +88,7 @@ export const EditArtistProfile = () => {
                 setPictureUrl(i)
             })
     }
+    
     const profilePictureUrlChange = (event) => {
         Base64Helper.convertToBase64(event.target.files[0],
             (i) => {
@@ -126,7 +122,10 @@ export const EditArtistProfile = () => {
                     <div className="change-Profile-Picture">
                         <input type="file" 
                         title= " "
+                        
                         onChange={profilePictureUrlChange}/>
+                            
+                        
                     </div>
                 </div>
 
@@ -173,6 +172,8 @@ export const EditArtistProfile = () => {
 
                 <div className="MusicSample">
                 <h1 className="profh1">Music samples</h1>
+
+                
 
                 <div>
                 <textarea rows="4" cols="50" type="text" placeholder="Descripcion"/>

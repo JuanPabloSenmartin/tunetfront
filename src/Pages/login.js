@@ -4,10 +4,7 @@ import {Link} from "react-router-dom";
 import logoTest from '../Images/logoTest1.png'
 import {useMySystem} from "../mySystem";
 import {useNavigate} from "react-router";
-
-function setToken(userToken) {
-    sessionStorage.setItem('token', JSON.stringify(userToken));
-}
+import { useTokenManager } from "../tokenManager";
 
 export const Login = () => {
     useEffect(() => {
@@ -20,6 +17,7 @@ export const Login = () => {
     const [errorMsg, setErrorMsg] = useState(undefined)
     const navigate = useNavigate();
     const mySystem = useMySystem();
+    const myTokenManager = useTokenManager();
 
 
     const handleSubmit = async e => {
@@ -41,11 +39,11 @@ export const Login = () => {
         mySystem.login(
             user,
             (token) => {
-                setToken(token)
+                myTokenManager.setToken(token)
                 navigate("/artistHome", {replace: true})
             },
             (token) => {
-                setToken(token)
+                myTokenManager.setToken(token)
                 navigate("/localHome", {replace: true})
             },
             (msg) => {

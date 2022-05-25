@@ -1,7 +1,6 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 export const NotFound = () => {
-        return (
-                <h1>NOT FOUND</h1>
-        )
+        return <Navigate to="/login" replace/>
 }

@@ -9,6 +9,9 @@ const TokenManager = {
     },
     removeToken: () => {
         sessionStorage.removeItem('token');
+    },
+    setToken: (userToken) => {
+        sessionStorage.setItem('token', JSON.stringify(userToken));
     }
 };
 
