@@ -98,6 +98,7 @@ input[type=password]{
   background-color: #3a57af;
   padding: 8px 0px 8px 15px;
   margin-left: 15px;
+  margin-right: 5px;
   -webkit-border-radius: 4px 0px 0px 4px; 
   -moz-border-radius: 4px 0px 0px 4px; 
   border-radius: 4px 0px 0px 4px;

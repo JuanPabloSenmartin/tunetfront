@@ -108,12 +108,13 @@ export const EditLocalProfile = () => {
             <form onSubmit={handleSubmit} className="profForm">
                 
                 <div className="profile-Pic">
-                    <div className="item-relative">
+                    <div className="ite">
                         <img src={profilePictureUrl} />
                     </div>
                     <div className="change-Profile-Picture">
                         <input type="file" 
                         title= " "
+                        accept="image/png, image/jpeg, image/jpg"
                         onChange={profilePictureUrlChange}/>
                     </div>
                 </div>
@@ -165,6 +166,7 @@ export const EditLocalProfile = () => {
                     <div className="change-Profile-Picture">
                         <input type="file" 
                         title= " "
+                        accept="image/png, image/jpeg, image/jpg"
                         onChange={pictureUrlChange}/>
                     </div>
                 </div>
@@ -172,7 +174,7 @@ export const EditLocalProfile = () => {
                 {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                 {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
 
-                <button type="submit" className="submitButtonEditProf">Save Changes</button>
+                <button type="submit" className="submitButtonEdit">Save Changes</button>
             </form> 
         </div>
     )

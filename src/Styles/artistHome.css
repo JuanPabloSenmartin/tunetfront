@@ -1,0 +1,9 @@
+.postArtistFeed{
+    box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 120px;
+  height: 120px;
+  border: 20px solid hsl(0, 0%, 59%);
+  margin: 10px;
+}

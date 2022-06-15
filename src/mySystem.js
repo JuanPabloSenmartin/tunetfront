@@ -159,7 +159,7 @@ const MySystem = {
        })
    },
     
-   addArtistToPostList: async (data, okCallback, errorCallback) => {
+   addArtistToPostList: async (data, okCallback, uncompleteFormErrorCallback, alreadySubmitedErrorCallback) => {
        fetch(`${restApiEndpoint}/artistList`, {
            method: 'POST',
            
@@ -170,8 +170,10 @@ const MySystem = {
        }).then(resp => {
            if (resp.status === 201) {
                okCallback()
+           } else if (resp.status === 404){
+               uncompleteFormErrorCallback()
            } else {
-               errorCallback()
+               alreadySubmitedErrorCallback()
            }
        })
    },
@@ -193,13 +195,30 @@ const MySystem = {
        })
    },
 
-   getAllPosts: async (token, okCallback, errorCallback) => {
+   getAllPosts: async (okCallback, errorCallback) => {
        fetch(`${restApiEndpoint}/getAllPosts`, {
            method: 'GET',
            
            headers: {
                'Content-Type': 'application/json'
            }
+       }).then(resp => {
+           if (resp.status === 201) {
+               resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
+   },
+
+   getPicFromMail: async (email, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/getPicFromMail`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(email)
        }).then(resp => {
            if (resp.status === 201) {
                resp.json().then(body => okCallback(body))

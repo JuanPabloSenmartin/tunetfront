@@ -46,35 +46,37 @@ export const ViewLocalProfile = () => {
             <div className="profForm">
                 
                 <div className="profile-Pic">
-                    <img src={profilePictureUrl} />
+                    <div className="ite">
+                        <img src={profilePictureUrl} />
+                    </div>
                 </div>
 
                 <div className="profile-Settings">
                     <div>
-                        <label className="profLabel">Username</label>
-                        <p>{username}</p>
+                        <label className="profLabelView">Username:</label>
+                        <p className="resp">{username}</p>
                     </div>
                     <br/>
                     <div>
-                    <label className="profLabel">Location</label>
-                        <p>{locations}</p>
+                    <label className="profLabelView">Location:</label>
+                        <p className="resp">{locations}</p>
                     </div>
                     <br/>
                     <div>
-                        <label className="profLabel">Phone number</label>
-                        <p>{phoneNumber}</p>
+                        <label className="profLabelView">Phone number:</label>
+                        <p className="resp">{phoneNumber}</p>
                     </div>
                     <br/>
                     <div>
-                        <label className="DescriptionLabel">Description</label>
-                        <p>{description}</p>
+                        <label className="profLabelView">Description:</label>
+                        <p className="resp">{description}</p>
                     </div>
                     
                 </div>
 
                 <div className="imagesProf">
-                    <h1 className="imagesh1">Images</h1>
-                    <img src={pictureUrl} className="imgLocalProf"/>
+                    <h1 className="imagesView">Images</h1>
+                    <img src={pictureUrl} className="imgLocalProfView"/>
                 </div>
 
                 {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}

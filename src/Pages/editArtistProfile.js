@@ -47,6 +47,7 @@ export const EditArtistProfile = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        console.log(location)
         refreshDatabase({
             email: email,
             artistAudioUrl: audioUrl,
@@ -63,6 +64,7 @@ export const EditArtistProfile = () => {
         mySystem.refreshDatabaseAfterProfileEdit(data, 
             () => {
                 setSuccessMsg('Your profile has been edited successfully!')
+                
                 navigate("/artistHome");
             }, 
             () => setErrorMsg('Your profile couldn`t be updated due to an error with out API'))
@@ -104,9 +106,7 @@ export const EditArtistProfile = () => {
     }
     
 
-    
     return (
-        
         <div>
             <br/>
             <br/>
@@ -116,18 +116,18 @@ export const EditArtistProfile = () => {
             <form onSubmit={handleSubmit} className="profForm">
                 
             <div className="profile-Pic">
-                    <div className="item-relative">
+                    <div className="ite">
                         <img src={profilePictureUrl} />
                     </div>
                     <div className="change-Profile-Picture">
                         <input type="file" 
+                        accept="image/png, image/jpeg, image/jpg"
                         title= " "
-                        
                         onChange={profilePictureUrlChange}/>
                             
                         
                     </div>
-                </div>
+            </div>
 
                 <div className="profile-Settings">
                     <div>
@@ -173,10 +173,6 @@ export const EditArtistProfile = () => {
                 <div className="MusicSample">
                 <h1 className="profh1">Music samples</h1>
 
-                
-
-                <div>
-                <textarea rows="4" cols="50" type="text" placeholder="Descripcion"/>
                 <div>
                 <ReactAudioPlayer
                     src={audioUrl}
@@ -184,16 +180,21 @@ export const EditArtistProfile = () => {
                 />
                 <div className="change-Audio">
                         <input type="file" 
+                        accept="audio/mpeg"
                         title= " "
                         onChange={audioUrlChange}/>
                 </div>
-                </div>
+                
 
                 <div className="images">
                     <h1 className="imagesh1">Images</h1>
-                    <img src={pictureUrl} className="imgLocalProf"/>
+                   
+                        <img src={pictureUrl} className="imgLocalProf"/>
+                    
+                    
                     <div className="change-Profile-Picture">
                         <input type="file" 
+                        accept="image/png, image/jpeg, image/jpg"
                         title= " "
                         onChange={pictureUrlChange}/>
                     </div>

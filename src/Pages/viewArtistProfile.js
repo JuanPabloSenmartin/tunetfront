@@ -47,35 +47,37 @@ export const ViewArtistProfile = () => {
             <div className="profForm">
                 
                 <div className="profile-Pic">
-                    <img src={profilePictureUrl} />
+                <div className="ite">
+                        <img src={profilePictureUrl} />
+                    </div>
                 </div>
 
                 <div className="profile-Settings">
                     <div>
-                        <label className="profLabel">Username</label>
-                        <p>{username}</p>
+                        <label className="profLabelView">Username</label>
+                        <p className="resp">{username}</p>
                     </div>
                     <br/>
                     <div>
-                    <label className="profLabel">Email</label>
-                        <p>{userMail}</p>
+                        <label className="profLabelView">Email</label>
+                        <p className="resp">{userMail}</p>
                     </div>
                     <br/>
                     <div>
-                        <label className="profLabel">Phone number</label>
-                        <p>{phoneNumber}</p>
+                        <label className="profLabelView">Phone number</label>
+                        <p className="resp">{phoneNumber}</p>
                     </div>
                     <br/>
                     <div>
-                        <label className="DescriptionLabel">Description</label>
-                        <p>{description}</p>
+                        <label className="profLabelView">Description</label>
+                        <p className="resp">{description}</p>
                     </div>
                     
                 </div>
 
 
-                <div className="MusicSample">
-                    <h1 className="profh1">Music samples</h1>
+                <div className="MusicSampleView">
+                    <h1 className="profh1View">Music samples</h1>
                     <div>
                         <ReactAudioPlayer
                             src={audioUrl}
@@ -83,8 +85,8 @@ export const ViewArtistProfile = () => {
                             />
                     </div>
                 </div>
-                <div className="images">
-                    <h1 className="imagesh1">Images</h1>
+                <div className="imagesProf">
+                    <h1 className="imagesView">Images</h1>
                     <img src={pictureUrl} className="imgLocalProf"/>
                 </div>
                 {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}

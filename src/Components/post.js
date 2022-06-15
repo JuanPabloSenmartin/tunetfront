@@ -35,17 +35,19 @@ export const Post = (props) => {
             <div className="post">
                 <nav>
                     
-                    <label onClick={handleClick}>
+                    <label onClick={handleClick} >
                         <span>{title}</span>
                     </label>               
                     {/* <input type="checkbox" id="touch"/>  */}
 
-                    <ul key={title} >
+                    <ul key={title}  >
                         
                        {props.opened ? artistList.map((i) => {
                             return(
-                                <li key={i.artistEmail}>
+                                <li className="slide" 
+                                key={i.artistEmail}>
                                     mail:{i.artistEmail} 
+                                    
                                     <Link to="/viewArtistProfile" state={{ mail: i.artistEmail} } >
                                         <button >
                                             View Profile
@@ -57,6 +59,6 @@ export const Post = (props) => {
                     </ul>
                 </nav> 
             </div>
-        )
+    )
     
 }

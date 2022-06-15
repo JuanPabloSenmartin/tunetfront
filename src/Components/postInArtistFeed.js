@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import '../Styles/postInArtistFeed.css'
 import {useNavigate} from "react-router";
 import {useMySystem} from "../mySystem";
@@ -14,13 +14,24 @@ export const PostInArtistFeed = (props) => {
     const description = props.post.description;
     const date = props.post.date;
     const mail = props.post.localEmail;
+    const [pic, setPic] = useState('')
     const navigate = useNavigate();
     const mySystem = useMySystem()
     const auth = useTokenManager()
     const token = auth.getToken();
     const [errorMsg, setErrorMsg] = useState(undefined)
+    const [successMsg, setSuccessMsg] = useState(undefined)
 
     
+    useEffect(() => {
+        fetchProfPic();
+    }, [])
+
+    const fetchProfPic = () => {
+        mySystem.getPicFromMail(mail, 
+            (i) =>  setPic(i),
+            () => setErrorMsg('error in fetch picture'))
+    }
 
     const submitApplication = () => {
         mySystem.addArtistToPostList({
@@ -28,23 +39,43 @@ export const PostInArtistFeed = (props) => {
             postID: postID
         },
         () => {
-            console.log('se aplico')
+            setSuccessMsg('You have applied sucessfully')
         },
-        () => setErrorMsg('ERROR'))
+        () => setErrorMsg('ERROR'),
+        () => setErrorMsg('Already submited'))
     }
     
     return(
             <div className="postInFeed">
-                <h2>Title : {title}</h2>
-                <p>PostID : {postID}</p>
-                <p>Description : {description}</p>
-                <p>Date : {date}</p>
-                <Link to="/viewLocalProfile" state={{ mail: mail} } >
-                    <button >
-                        View Profile
-                    </button>
-                </Link>
-                <button onClick={submitApplication}>Submit my application</button>
+                <h1 className="h1Title">{title}</h1>
+                <div className="imgDivPic">
+                    <img className="picFeed" src={pic} />
+                </div>
+                <div className="infoInPost">
+                    <div className="mss">
+                    <label >Email</label>
+                    <p>{mail}</p>
+                    <Link  to="/viewLocalProfile" state={{ mail: mail} } >
+                        <button className="linkToviewLocal">
+                            View Profile
+                        </button>
+                    </Link>
+                    </div>
+                    
+                    <div className="mss">
+                    <label >Date</label>
+                    <p className="ll">{date}</p>
+                    </div>
+                    <div className="mss">
+                    <label >Description</label>
+                    <p>{description}</p>
+                    </div>
+
+                    {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
+                    {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
+                    
+                    <button className="buttonSubmitApp" onClick={submitApplication}>Submit my application</button>
+                </div>
             </div>
         )
     

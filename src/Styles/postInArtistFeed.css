@@ -1,0 +1,52 @@
+.postInFeed{
+    height: 500px;
+    border:1px solid black;
+    width: 80%;
+    margin : 40px auto; 
+}
+.h1Title{
+    color: black;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+.picFeed{
+    border-radius: 50px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px
+    
+}
+.imgDivPic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    width: 50%;
+    height: 80%;
+}
+.linkToviewLocal{
+    float: right;
+    margin-right: 20%;
+}
+.mss{
+    color: black;
+    font-size: 140%;
+    margin-top: 40px;
+    
+}
+.infoInPost{
+    position:relative;
+}
+.buttonSubmitApp{
+  position: absolute;
+  top: 300px;
+  left: 950px;
+  
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+}
+.ll{
+    color: black;
+    font-size: 120%;
+}

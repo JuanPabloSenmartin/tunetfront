@@ -4,6 +4,7 @@ import {useNavigate} from "react-router";
 import { LogOut } from "../Components/logOut";
 import {useMySystem} from "../mySystem";
 import { PostInArtistFeed } from "../Components/postInArtistFeed";
+    
 
 
 
@@ -18,7 +19,7 @@ export const ArtistHome = () => {
     }, [])
 
     const fetchPostsInFeed = () => {
-        mySystem.getAllPosts(null, 
+        mySystem.getAllPosts( 
             (i) => {
                 setPosts(i)
             },
@@ -29,12 +30,16 @@ export const ArtistHome = () => {
     const handleClick = () => {
         navigate("/editArtistProfile");
     }
+    const handleChatButton = () => {
+        navigate("/chat");
+    }
     
     return (
         <div>
             <button  onClick={handleClick}>editar perfil</button>
             <LogOut/>
-
+            <button onClick={handleChatButton}>Chat</button>
+            
             <h1>POSTS</h1>
 
 

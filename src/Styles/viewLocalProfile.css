@@ -1,0 +1,22 @@
+.profLabelView{
+    display: inline-block;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  font-size: 160%;
+  color: black;
+  width: 250px;
+}
+.resp{
+    font-size: 130%;
+    color: black;
+}
+.imagesView{
+    color: black;
+    float: left;
+    margin-right: 20px;
+}
+
+.imgLocalProfView{
+    max-width: 20%;
+    float:left;
+}

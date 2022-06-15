@@ -41,49 +41,17 @@ export const LocalHome = () => {
         navigate("/editLocalProfile");
     }
 
-    
-
-
-    const data = [{
-        "id" : "1",
-        "title": "test1",
-        "date" : "date1",
-        "description": "desc1",
-        "artistList": [{
-            "name": "juampi",
-            "mail": "gg"
-        },
-        {
-            "name": "juampi2",
-            "mail": "juampi.sen2"
-        }]
-    },
-    {   
-        "id" : "2",
-        "title": "test2",
-        "date" : "date2",
-        "description": "desc2",
-        "artistList": [{
-            "name": "julian",
-            "mail": "julia@"
-        }]
-    }]
     return (
         <div >
             <div className="div1">
                 <Link to="/createPost"><img src={NewPostIcon} className="add"/> </Link>
                 <LogOut/>
-                <div className="dropdown">
-                    
-                </div>
                 <button onClick={handleClick}>Edit Profile</button> 
             </div>
-            <div className="div2">
-                <h2>My posts</h2>
-            </div>
+            
             <div className="div3">
 
-                <h1>ACA ESTAN LOS POSTS</h1>
+                <h1>YOUR POSTS</h1>
                 {posts.map((info) => {
                     return(
                         <div>
