@@ -19,6 +19,7 @@ export const EditArtistProfile = () => {
     const [profilePictureUrl, setProfilePictureUrl] = useState('')
     const [location, setLocation] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    const [rating, setRating] = useState('')
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [successMsg, setSuccessMsg] = useState(undefined)
     const navigate = useNavigate();
@@ -42,6 +43,7 @@ export const EditArtistProfile = () => {
             setProfilePictureUrl(info.profilePictureUrl)
             setLocation(info.location)
             setPhoneNumber(info.phoneNumber)
+            setRating(info.rating)
         }, () => setErrorMsg('ERROR'))
     }
 
@@ -164,6 +166,11 @@ export const EditArtistProfile = () => {
                             value={description}
                             name="description"
                             onChange={descriptionChange}/>
+                    </div>
+                    <br/>
+                    <div>
+                        <label className="profLabel">Rating</label>
+                        <p className="resp">{rating}</p>
                     </div>
                     
                 </div>

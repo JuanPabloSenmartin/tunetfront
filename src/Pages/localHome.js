@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import '../Styles/localHome.css'
-import ConfigurationIcon from '../Images/configurationIcon.png'
 import NewPostIcon from '../Images/newPostIcon.png'
 import {Link} from 'react-router-dom'
 import {Post} from '../Components/post'
@@ -15,11 +14,12 @@ export const LocalHome = () => {
     const navigate = useNavigate()
     const mySystem = useMySystem()
     const auth = useTokenManager()
+    const token = auth.getToken()
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [posts, setPosts] = useState([])
     
     const [selectedPost, setSelectedPost] = useState(undefined)
-    const token = auth.getToken();
+    
 
     useEffect(() => {
         const color = "#8860D0";
@@ -42,9 +42,15 @@ export const LocalHome = () => {
     }
 
     return (
-        <div >
+        <div>
             <div className="div1">
                 <Link to="/createPost"><img src={NewPostIcon} className="add"/> </Link>
+                <Link to="/chat" state={{
+                            emailHIM: '', 
+                            emailME: '', 
+                            isMEartist: false,
+                            fromPost: false           
+                        }}><button>My chats</button></Link>
                 <LogOut/>
                 <button onClick={handleClick}>Edit Profile</button> 
             </div>
@@ -52,6 +58,7 @@ export const LocalHome = () => {
             <div className="div3">
 
                 <h1>YOUR POSTS</h1>
+                
                 {posts.map((info) => {
                     return(
                         <div>
@@ -60,9 +67,7 @@ export const LocalHome = () => {
                     )
                 })}
                 
-            </div>
-   
-             
+            </div>     
         </div>
     )
 }

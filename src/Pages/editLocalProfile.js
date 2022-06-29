@@ -16,6 +16,7 @@ export const EditLocalProfile = () => {
     const [pictureUrl, setPictureUrl] = useState('')
     const [profilePictureUrl, setProfilePictureUrl] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    const [rating, setRating] = useState('')
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [successMsg, setSuccessMsg] = useState(undefined)
     const navigate = useNavigate();
@@ -40,6 +41,7 @@ export const EditLocalProfile = () => {
             setPictureUrl(info.pictureUrl)
             setProfilePictureUrl(info.profilePictureUrl)
             setPhoneNumber(info.phoneNumber)
+            setRating(info.rating)
         }, () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))
     }
 
@@ -154,6 +156,10 @@ export const EditLocalProfile = () => {
                             value={description}
                             name="description"
                             onChange={descriptionChange}/>
+                    </div>
+                    <div>
+                        <label className="profLabel">Rating</label>
+                        <p className="resp">{rating}</p>
                     </div>
                     
                 </div>

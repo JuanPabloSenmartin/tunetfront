@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../Styles/post.css'
 import { Link } from "react-router-dom";
 import {useMySystem} from "../mySystem";
+import { StarRating } from "./starRating";
 
 
 
@@ -38,11 +39,11 @@ export const Post = (props) => {
                     <label onClick={handleClick} >
                         <span>{title}</span>
                     </label>               
-                    {/* <input type="checkbox" id="touch"/>  */}
 
                     <ul key={title}  >
                         
                        {props.opened ? artistList.map((i) => {
+                        
                             return(
                                 <li className="slide" 
                                 key={i.artistEmail}>
@@ -53,6 +54,20 @@ export const Post = (props) => {
                                             View Profile
                                         </button>
                                     </Link> 
+                                    
+                                    <Link to="/chat" state={{
+                            emailHIM: i.artistEmail, 
+                            emailME: props.post.localEmail, 
+                            isMEartist: false,
+                            fromPost: true           
+                        }} >
+                                        <button >
+                                            Chat
+                                        </button>
+                                    </Link>
+
+                                    <StarRating />
+                                    
                                 </li>
                             )
                         }) : "" }

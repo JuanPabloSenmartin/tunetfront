@@ -4,6 +4,7 @@ import {useNavigate} from "react-router";
 import { LogOut } from "../Components/logOut";
 import {useMySystem} from "../mySystem";
 import { PostInArtistFeed } from "../Components/postInArtistFeed";
+import {Link} from 'react-router-dom'
     
 
 
@@ -30,15 +31,18 @@ export const ArtistHome = () => {
     const handleClick = () => {
         navigate("/editArtistProfile");
     }
-    const handleChatButton = () => {
-        navigate("/chat");
-    }
+    
     
     return (
         <div>
             <button  onClick={handleClick}>editar perfil</button>
             <LogOut/>
-            <button onClick={handleChatButton}>Chat</button>
+            <Link to="/chat" state={{
+                            emailHIM: '', 
+                            emailME: '', 
+                            isMEartist: true,
+                            fromPost: false           
+                        }}><button>My chats</button></Link>
             
             <h1>POSTS</h1>
 

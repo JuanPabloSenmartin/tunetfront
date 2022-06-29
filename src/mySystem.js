@@ -226,6 +226,55 @@ const MySystem = {
                errorCallback()
            }
        })
+   },
+   getUsersInChat: async (token, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/chatUsers`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(token)
+       }).then(resp => {
+           if (resp.status === 201) {
+               resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
+   },
+
+   getChatOfaMailHIM: async (emailME, emailHIM, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/getChatOfaUser`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(emailME + "~" + emailHIM)
+       }).then(resp => {
+           if (resp.status === 201) {
+               resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
+   },
+   getMessagesInChat: async (emailME, emailHIM, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/getMessages`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(emailME + "~" + emailHIM)
+       }).then(resp => {
+           if (resp.status === 201) {
+               resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
    }
 
    
