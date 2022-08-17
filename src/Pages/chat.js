@@ -108,7 +108,7 @@ export const Chat = () => {
             <main> 
                 <button onClick={handleBackClick}>Go back</button>
                 {(usersData.length != 0 || data.fromPost) ? <ChatComponent selectedUser={selectedUserChat} key={selectedUserChat.id}/> : 
-                <h1>No conversations yet!</h1> 
+                "" 
             }  
             </main>
 	
