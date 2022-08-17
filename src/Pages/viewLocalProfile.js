@@ -14,6 +14,7 @@ export const ViewLocalProfile = () => {
     const [pictureUrl, setPictureUrl] = useState('')
     const [profilePictureUrl, setProfilePictureUrl] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    const [rating, setRating] = useState('')
     const [errorMsg, setErrorMsg] = useState(undefined)
     const mySystem = useMySystem();
 
@@ -32,6 +33,7 @@ export const ViewLocalProfile = () => {
             setPictureUrl(info.pictureUrl)
             setProfilePictureUrl(info.profilePictureUrl)
             setPhoneNumber(info.phoneNumber)
+            setRating(info.rating)
         }, () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))
     }
 
@@ -70,6 +72,10 @@ export const ViewLocalProfile = () => {
                     <div>
                         <label className="profLabelView">Description:</label>
                         <p className="resp">{description}</p>
+                    </div>
+                    <div>
+                        <label className="profLabel">Rating</label>
+                        <p className="resp">{rating}</p>
                     </div>
                     
                 </div>

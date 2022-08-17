@@ -195,13 +195,14 @@ const MySystem = {
        })
    },
 
-   getAllPosts: async (okCallback, errorCallback) => {
+   getAllPosts: async (token, okCallback, errorCallback) => {
        fetch(`${restApiEndpoint}/getAllPosts`, {
-           method: 'GET',
+           method: 'POST',
            
            headers: {
                'Content-Type': 'application/json'
-           }
+           },
+           body: JSON.stringify(token)
        }).then(resp => {
            if (resp.status === 201) {
                resp.json().then(body => okCallback(body))
@@ -271,6 +272,22 @@ const MySystem = {
        }).then(resp => {
            if (resp.status === 201) {
                resp.json().then(body => okCallback(body))
+           } else {
+               errorCallback()
+           }
+       })
+   },
+   addRating: async (email, rating, okCallback, errorCallback) => {
+       fetch(`${restApiEndpoint}/rating`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(rating + "~" + email)
+       }).then(resp => {
+           if (resp.status === 201) {
+               okCallback()
            } else {
                errorCallback()
            }

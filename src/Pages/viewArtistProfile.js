@@ -3,6 +3,8 @@ import '../Styles/viewArtistProfile.css'
 import { useLocation } from 'react-router-dom'
 import {useMySystem} from "../mySystem";
 import ReactAudioPlayer from 'react-audio-player';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
 
 export const ViewArtistProfile = () => {
     const location = useLocation()
@@ -74,10 +76,11 @@ export const ViewArtistProfile = () => {
                         <label className="profLabelView">Description</label>
                         <p className="resp">{description}</p>
                     </div>
-                    <div>
-                        <label className="profLabel">Rating</label>
-                        <p className="resp">{rating}</p>
+                    <div className="ratings">
+                        <Rating name="read-only" value={rating} readOnly />
                     </div>
+      
+    
                     
                 </div>
 

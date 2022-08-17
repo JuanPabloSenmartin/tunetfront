@@ -5,11 +5,14 @@ import { LogOut } from "../Components/logOut";
 import {useMySystem} from "../mySystem";
 import { PostInArtistFeed } from "../Components/postInArtistFeed";
 import {Link} from 'react-router-dom'
+import {useTokenManager} from "../tokenManager"
     
 
 
 
 export const ArtistHome = () => {
+    const auth = useTokenManager()
+    const token = auth.getToken()
     const navigate = useNavigate()
     const mySystem = useMySystem()
     const [posts, setPosts] = useState([])
@@ -20,7 +23,7 @@ export const ArtistHome = () => {
     }, [])
 
     const fetchPostsInFeed = () => {
-        mySystem.getAllPosts( 
+        mySystem.getAllPosts(token, 
             (i) => {
                 setPosts(i)
             },

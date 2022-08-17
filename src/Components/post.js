@@ -66,7 +66,7 @@ export const Post = (props) => {
                                         </button>
                                     </Link>
 
-                                    <StarRating />
+                                    <StarRating email={i.artistEmail}/>
                                     
                                 </li>
                             )

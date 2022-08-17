@@ -5,6 +5,7 @@ import {Register} from './Pages/register'
 import {NotFound} from "./Pages/notFound"
 import {LocalHome} from "./Pages/localHome"
 import {ArtistHome} from "./Pages/artistHome"
+import { MainPage } from "./Pages/mainPage"
 import {ViewArtistProfile} from './Pages/viewArtistProfile'
 import {EditArtistProfile} from './Pages/editArtistProfile'
 import {ViewLocalProfile} from './Pages/viewLocalProfile'
@@ -19,7 +20,7 @@ const App = () => (
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
-            
+            <Route path="homePage" element={<MainPage/>}/>
             <Route path="localHome" element={
                 <RequireAuth>
                     <LocalHome />

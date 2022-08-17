@@ -21,6 +21,7 @@ export const PostInArtistFeed = (props) => {
     const token = auth.getToken();
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [successMsg, setSuccessMsg] = useState(undefined)
+    const [submitButton, setSubmitButton] = useState(true)
 
     
     useEffect(() => {
@@ -40,6 +41,7 @@ export const PostInArtistFeed = (props) => {
         },
         () => {
             setSuccessMsg('You have applied sucessfully')
+            setSubmitButton(false)
         },
         () => setErrorMsg('ERROR'),
         () => setErrorMsg('Already submited'))
@@ -74,7 +76,7 @@ export const PostInArtistFeed = (props) => {
                     {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                     {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
                     
-                    <button className="buttonSubmitApp" onClick={submitApplication}>Submit my application</button>
+                    {submitButton && <button className="buttonSubmitApp" onClick={submitApplication}>Submit my application</button>}
                 </div>
             </div>
         )
