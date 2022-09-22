@@ -1,16 +1,14 @@
-import {React, useEffect, useState} from "react";
+import {React, useState} from "react";
 import '../Styles/login.css'
 import {Link} from "react-router-dom";
 import logoTest from '../Images/logoTest1.png'
 import {useMySystem} from "../mySystem";
 import {useNavigate} from "react-router";
 import { useTokenManager } from "../tokenManager";
+import background from '../Images/back1.jpg';
 
 export const Login = () => {
-    useEffect(() => {
-        const color = "#8860D0";
-        document.body.style.background = color;
-      });
+    
 
     const [mail, setMail] = useState('')
     const [password, setPassword] = useState('')
@@ -18,6 +16,14 @@ export const Login = () => {
     const navigate = useNavigate();
     const mySystem = useMySystem();
     const myTokenManager = useTokenManager();
+    const myStyle={
+        backgroundImage: `url(${background})`,
+        marginTop:'-30px',
+        height:'110vh',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+    };
+    
 
 
     const handleSubmit = async e => {
@@ -64,7 +70,7 @@ export const Login = () => {
     
 
     return(
-        <div className="loginMain">
+        <div style={myStyle}>
             
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' 
             rel='stylesheet' type='text/css' />
