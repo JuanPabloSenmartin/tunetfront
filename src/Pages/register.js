@@ -10,6 +10,7 @@ export const Register = () => {
     const [password, setPassword] = useState('')
     const [isArtist, setIsArtist] = useState('')
     const [errorMsg, setErrorMsg] = useState(undefined)
+    const [isRegistered, setIsRegistered] = useState(false)
     const [uncompleteFormMsg, setUncompleteFormMsg] = useState(undefined)
     const navigate = useNavigate();
     const mySystem = useMySystem();
@@ -23,6 +24,7 @@ export const Register = () => {
             password: password,
             isArtist: isArtist
         })
+        setIsRegistered(true)
     }
 
     useEffect(() => {
@@ -40,7 +42,7 @@ export const Register = () => {
     const registerUser = (user) => {
         mySystem.register(
             user,
-            () => navigate("/login"),
+            () => {},
             () => {
                 setErrorMsg('User already exists')
                 resetForm();
@@ -61,6 +63,10 @@ export const Register = () => {
 
     const mailChange = (event) => {
         setMail(event.target.value)
+    }
+
+    const navigateToLogin = () => {
+        navigate("/login")
     }
 
     const isArtistChange = () => {
@@ -120,6 +126,8 @@ export const Register = () => {
                     
                     <button className="submitButton" type="submit">Register</button>
 
+                    <button onClick={navigateToLogin}>Log in</button>
+                    {isRegistered && <div className="successArt" role="alert">You have successfully registered in Tunet!</div>}
                     {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                     {uncompleteFormMsg && <div className="alertWarning" role="alert">{uncompleteFormMsg}</div>}
                 </form>
