@@ -20,9 +20,6 @@
     margin:auto;
     
 }
-.profForm{
-  margin-top: 70px;
-}
 
 .profh1 {
   color: black;
@@ -40,11 +37,11 @@
 
 
 .DescriptionLabel {
-  display:block;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  float: left;
+  margin-right: 14px;
   color: black;
   font-size: 130%;
+  width: 170px;
 }
 
 
@@ -65,28 +62,21 @@
     margin-right: auto;
 }
 
-.profile-Settings{
-    display: flex;
-    float: left;
-    flex-direction: column;
-    margin-right: 100px;
+
+.song-in-gallery{
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
+.trash-icon-sample{
+  font-size: 200%;
+  margin-left: 1%;
+  margin-bottom: 0.5%;
+  cursor: pointer;
+}
+.trash-icon-sample:hover{
+  color:#3a57af;
 }
 
-.MusicSample{
-  position: absolute;
-  bottom: 0;
-  margin: auto;
-}
 
-.submitButtonEdit{
-  position: absolute;
-  bottom:   0;
-  right: 0;
-  margin-bottom: 30px;
-  margin-right: 30px;
-  width: 10%;
-  height: 5%;
-  border-radius: 25px;
-}
 
 

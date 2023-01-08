@@ -3,6 +3,12 @@ import {useState} from "react";
 import {useNavigate} from "react-router";
 import '../Styles/register.css';
 import {useMySystem} from "../mySystem";
+import {FaEnvelope} from 'react-icons/fa'
+import {FaKey} from 'react-icons/fa'
+import {FaUserAlt} from 'react-icons/fa'
+import InitialNavbar from "../Components/InitialNavbar";
+import Background from "../Components/Background";
+
 
 export const Register = () => {
     const [mail, setMail] = useState('')
@@ -24,13 +30,8 @@ export const Register = () => {
             password: password,
             isArtist: isArtist
         })
-        setIsRegistered(true)
+        
     }
-
-    useEffect(() => {
-        const color = "#8860D0";
-        document.body.style.background = color;
-      });
 
     const resetForm = () => {
         setMail('')
@@ -42,7 +43,10 @@ export const Register = () => {
     const registerUser = (user) => {
         mySystem.register(
             user,
-            () => {},
+            () => {
+                setIsRegistered(true)
+                navigate("/login")
+            },
             () => {
                 setErrorMsg('User already exists')
                 resetForm();
@@ -65,9 +69,6 @@ export const Register = () => {
         setMail(event.target.value)
     }
 
-    const navigateToLogin = () => {
-        navigate("/login")
-    }
 
     const isArtistChange = () => {
         setIsArtist('true')
@@ -77,16 +78,17 @@ export const Register = () => {
     }
 
     return(
-        <div >
-            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' 
-            rel='stylesheet' type='text/css' />
-            <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet" />
+        <div style={Background()}>
+            <InitialNavbar/>
+            <div className="space"/>
 
-            <div className="testbox">
-                <h1>Register</h1>
+            <div className="testbox-login">
+                <h1 className="small-title">Sign Up</h1>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="login-form">
+                    
                     <hr />
+                    
                     <div className="accounttype">
                         <input type="radio"
                          value="None"
@@ -103,20 +105,22 @@ export const Register = () => {
                         />
                         <label htmlFor="radioTwo" className="radio">Local</label>
                     </div>
+                    
                     <hr />
-                    <label id="icon" htmlFor="name"><i className="icon-envelope "></i></label>
+                    <br/>
+                    <label id="icon" htmlFor="name"><FaEnvelope/></label>
                     <input type="text"
                             placeholder="Mail"
                             value={mail}
                             name="email"
                             onChange={mailChange}/>
-                    <label id="icon" htmlFor="name"><i className="icon-user"></i></label>
+                    <label id="icon" htmlFor="name"><FaUserAlt/></label>
                     <input type="text"
                             placeholder="Username"
                             value={username}
                             name="username"
                             onChange={usernameChange}/>
-                    <label id="icon" htmlFor="password"><i className="icon-shield"></i></label>
+                    <label id="icon" htmlFor="password"><FaKey/></label>
                     <input type="password"
                             id="floatingPassword"
                             placeholder="Password"
@@ -124,9 +128,10 @@ export const Register = () => {
                             value={password}
                             onChange={passwordChange}/>
                     
-                    <button className="submitButton" type="submit">Register</button>
+                    <div className="bottom-register">
+                        <button className="submitButton" type="submit">Sign Up</button>
+                    </div>
 
-                    <button onClick={navigateToLogin}>Log in</button>
                     {isRegistered && <div className="successArt" role="alert">You have successfully registered in Tunet!</div>}
                     {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                     {uncompleteFormMsg && <div className="alertWarning" role="alert">{uncompleteFormMsg}</div>}

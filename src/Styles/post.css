@@ -1,11 +1,11 @@
-nav {
+.post-nav {
   width : 80%; 
   background: white;
   margin : 40px auto; 
   
 }
 
-span {
+.post-span {
   padding : 30px;
   background : #5680E9; 
   color : white;
@@ -15,7 +15,7 @@ span {
   display: block;
 }
 
-span::after {
+.post-span::after {
   float: right;
   right: 10%;
   content: "+";

@@ -3,8 +3,11 @@ import '../Styles/viewArtistProfile.css'
 import { useLocation } from 'react-router-dom'
 import {useMySystem} from "../mySystem";
 import ReactAudioPlayer from 'react-audio-player';
-import Rating from '@mui/material/Rating';
-import Box from '@mui/material/Box';
+// import Rating from '@mui/material/Rating';
+import HomeNavbar from "../Components/HomeNavbar";
+import Background from "../Components/Background";
+
+
 
 export const ViewArtistProfile = () => {
     const location = useLocation()
@@ -22,8 +25,6 @@ export const ViewArtistProfile = () => {
     const mySystem = useMySystem();
 
     useEffect(() => {
-        const color = "#8860D0";
-        document.body.style.background = color;
         fetchData();
     }, [])
 
@@ -42,7 +43,9 @@ export const ViewArtistProfile = () => {
     
     return (
         
-        <div>
+        <div style={Background()}>
+            <HomeNavbar isArtist= {false}/>
+            <div className="space"/>
             <br/>
             <br/>
             <div className="titleEditProf">
@@ -77,7 +80,7 @@ export const ViewArtistProfile = () => {
                         <p className="resp">{description}</p>
                     </div>
                     <div className="ratings">
-                        <Rating name="read-only" value={rating} readOnly />
+                        {/* <Rating name="read-only" value={rating} readOnly /> */}
                     </div>
       
     

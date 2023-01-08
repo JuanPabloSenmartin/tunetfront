@@ -7,3 +7,12 @@
   border: 20px solid hsl(0, 0%, 59%);
   margin: 10px;
 }
+
+.posts-title{
+  font-weight: bold;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-size: 250%;
+  color: #222;
+  text-align: center;
+}

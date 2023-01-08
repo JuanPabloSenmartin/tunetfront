@@ -1,0 +1,50 @@
+
+.homeFilter {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .homeFilter_panelList-wrap,
+  .homeFilter_panel-wrap,
+  .homeFilter_list-wrap {
+    overflow-y: auto;
+    overflow-x: hidden
+    ;
+  }
+  
+  .homeFilter_panelList-wrap {
+    flex: 1;
+    display: flex;
+    margin-left: 20px;
+    
+  }
+  .homeFilter_panel-wrap {
+    flex-basis: 280px;
+    padding: 1rem;
+  }
+  .homeFilter_list-wrap {
+    flex: 1;
+    padding: 1rem;
+  }
+  .posts-wrap{
+      width: 50%;
+      margin-left: 10%;
+      overflow-y: hidden;
+  }
+
+  .labelFilter {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    font-size: 150%;
+    text-align: center;
+  }
+  .input-group {
+    margin-bottom: 2rem;
+  }
+  .label-range {
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    font-size: 150%;
+    text-align: center;
+  }
+

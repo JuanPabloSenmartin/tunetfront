@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import '../Styles/localHome.css'
-import NewPostIcon from '../Images/newPostIcon.png'
-import {Link} from 'react-router-dom'
 import {Post} from '../Components/post'
 import {useMySystem} from "../mySystem";
-import {useNavigate} from "react-router";
 import {useTokenManager} from "../tokenManager"
-import { LogOut } from "../Components/logOut";
+import HomeNavbar from "../Components/HomeNavbar";
+import Background from "../Components/Background";
+import {FaRegPlusSquare} from 'react-icons/fa'
+import {useNavigate} from "react-router";
+
 
 
 
 export const LocalHome = () => {
-    const navigate = useNavigate()
     const mySystem = useMySystem()
     const auth = useTokenManager()
     const token = auth.getToken()
+    const navigate = useNavigate();
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [posts, setPosts] = useState([])
     
@@ -22,8 +23,6 @@ export const LocalHome = () => {
     
 
     useEffect(() => {
-        const color = "#8860D0";
-        document.body.style.background = color;
         fetchPosts()
     }, [])
     
@@ -37,27 +36,19 @@ export const LocalHome = () => {
               () => setErrorMsg('ERROR'));
     }
 
-    const handleClick = () => {
-        navigate("/editLocalProfile");
-    }
 
     return (
-        <div>
+        <div style={Background()}>
+            <HomeNavbar isArtist= {false}/>
+            <div className="space"/>
+
             <div className="div1">
-                <Link to="/createPost"><img src={NewPostIcon} className="add"/> </Link>
-                <Link to="/chat" state={{
-                            emailHIM: '', 
-                            emailME: '', 
-                            isMEartist: false,
-                            fromPost: false           
-                        }}><button>My chats</button></Link>
-                <LogOut/>
-                <button onClick={handleClick}>Edit Profile</button> 
+                <FaRegPlusSquare className="plus-icon" onClick={() => navigate("/createPost")}/> Create Post
             </div>
             
             <div className="div3">
 
-                <h1>YOUR POSTS</h1>
+                <h1 className="current-posts-title">Your current posts</h1>
                 
                 {posts.map((info) => {
                     return(

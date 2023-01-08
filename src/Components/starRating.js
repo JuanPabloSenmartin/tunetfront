@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import '../Styles/starRating.css'
-import Rating from '@mui/material/Rating';
+// import Rating from '@mui/material/Rating';
 import {useMySystem} from "../mySystem";
 
 export const StarRating = (props) => {
@@ -27,14 +27,15 @@ export const StarRating = (props) => {
     }
 
     return (
-        <Rating
+    //     <Rating
         
-        name="simple-controlled"
-        value={rating}
-        onChange={(event, newValue) => {
-          setRating(newValue);
-        }}
+    //     name="simple-controlled"
+    //     value={rating}
+    //     onChange={(event, newValue) => {
+    //       setRating(newValue);
+    //     }}
         
-      />
+    //   />
+    <></>
       );
     };

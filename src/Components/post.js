@@ -34,10 +34,9 @@ export const Post = (props) => {
     
     return(
             <div className="post">
-                <nav>
-                    
+                <nav className="post-nav">
                     <label onClick={handleClick} >
-                        <span>{title}</span>
+                        <span className="post-span">{title}</span>
                     </label>               
 
                     <ul key={title}  >

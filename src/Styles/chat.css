@@ -1,11 +1,6 @@
-*{
-	box-sizing:border-box;
-}
-body{
-	background-color:#abd9e9;
-	font-family:Arial;
-}
-#container{
+
+
+.chat-container{
 	width:100%;
 	height:100%;
 	background:#8860D0;
@@ -14,7 +9,7 @@ body{
 	border-radius:5px;
 	overflow:hidden;
 }
-aside{
+.chat-aside{
 	width:260px;
 	height:800px;
 	background-color:#3b3e49;
@@ -22,7 +17,7 @@ aside{
 	font-size:15px;
 	vertical-align:top;
 }
-main{
+.chat-main{
 	width:490px;
 	height:800px;
 	display:inline-block;
@@ -30,40 +25,25 @@ main{
 	vertical-align:top;
 }
 
-aside header{
+.chat-header{
 	padding:30px 20px;
 }
-aside input{
-	width:100%;
-	height:50px;
-	line-height:50px;
-	padding:0 50px 0 20px;
-	background-color:#5e616a;
-	border:none;
-	border-radius:3px;
-	color:#fff;
-	background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_search.png);
-	background-repeat:no-repeat;
-	background-position:170px;
-	background-size:40px;
-}
-aside input::placeholder{
-	color:#fff;
-}
-aside ul{
+
+
+.chat-ul{
 	padding-left:0;
 	margin:0;
 	list-style-type:none;
 	overflow-y:scroll;
 	height:690px;
 }
-aside li{
+.chat-li{
 	padding:10px 0;
 }
-aside li:hover{
+.chat-li:hover{
 	background-color:#5e616a;
 }
-h2,h3{
+.chat-h2, .chat-h3{
 	margin:0;
 }
 aside li img{
@@ -71,18 +51,18 @@ aside li img{
 	margin-left:20px;
 	margin-right:8px;
 }
-aside li div{
+.chat-li div{
 	display:inline-block;
 	vertical-align:top;
 	margin-top:12px;
 }
-aside li h2{
+.chat-li h2{
 	font-size:14px;
 	color:#fff;
 	font-weight:normal;
 	margin-bottom:5px;
 }
-aside li h3{
+.chat-li h3{
 	font-size:12px;
 	color:#7e818a;
 	font-weight:normal;
@@ -107,31 +87,31 @@ aside li h3{
 	margin-left:7px;
 }
 
-main header{
+.chat-header{
 	height:50px;
 	padding:30px 20px 30px 40px;
 }
-main header > *{
+.chat-header > *{
 	display:inline-block;
 	vertical-align:top;
     
 }
-main header img:first-child{
+.chat-header img:first-child{
 	border-radius:50%;
 }
-main header img:last-child{
+.chat-header img:last-child{
 	width:24px;
 	margin-top:8px;
 }
-main header div{
+.chat-header div{
 	margin-left:10px;
 	margin-right:145px;
 }
-main header h2{
+.chat-header h2{
 	font-size:16px;
 	margin-bottom:5px;
 }
-main header h3{
+.chat-header h3{
 	font-size:14px;
 	font-weight:normal;
 	color:#7e818a;
@@ -195,11 +175,11 @@ main header h3{
 		margin-left:375px;
 }
 
-main footer{
+.chat-footer{
 	height:155px;
 	padding:20px 30px 10px 20px;
 }
-main footer textarea{
+.chat-footer textarea{
 	resize:none;
 	border:none;
 	display:block;
@@ -210,14 +190,14 @@ main footer textarea{
 	font-size:13px;
 	margin-bottom:13px;
 }
-main footer textarea::placeholder{
+.chat-footer textarea::placeholder{
 	color:#ddd;
 }
-main footer img{
+.chat-footer img{
 	height:30px;
 	cursor:pointer;
 }
-main footer a{
+.chat-footer a{
 	text-decoration:none;
 	text-transform:uppercase;
 	font-weight:bold;

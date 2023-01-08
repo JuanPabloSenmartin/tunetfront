@@ -5,7 +5,7 @@ import {Register} from './Pages/register'
 import {NotFound} from "./Pages/notFound"
 import {LocalHome} from "./Pages/localHome"
 import {ArtistHome} from "./Pages/artistHome"
-import { MainPage } from "./Pages/mainPage"
+import { Discover } from "./Pages/discover"
 import {ViewArtistProfile} from './Pages/viewArtistProfile'
 import {EditArtistProfile} from './Pages/editArtistProfile'
 import {ViewLocalProfile} from './Pages/viewLocalProfile'
@@ -13,14 +13,18 @@ import {EditLocalProfile} from './Pages/editLocalProfile'
 import {Chat} from './Pages/chat'
 import { CreatePost } from "./Pages/createPost"
 import { RequireAuth } from "./Components/RequireAuth"
+import { AboutUs } from "./Pages/aboutUs"
+
+
 
 const App = () => (
     
-        <Routes>
+        <Routes >
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="homePage" element={<MainPage/>}/>
+            <Route path="discover" element={<Discover/>}/>
+            <Route path="aboutUs" element={<AboutUs/>}/>
             <Route path="localHome" element={
                 <RequireAuth>
                     <LocalHome />

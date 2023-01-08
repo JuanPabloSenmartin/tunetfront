@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import '../Styles/viewLocalProfile.css'
 import { useLocation } from 'react-router-dom'
 import {useMySystem} from "../mySystem";
+import HomeNavbar from "../Components/HomeNavbar";
+import Background from "../Components/Background";
 
 
 export const ViewLocalProfile = () => {
@@ -19,8 +21,6 @@ export const ViewLocalProfile = () => {
     const mySystem = useMySystem();
 
     useEffect(() => {
-        const color = "#8860D0";
-        document.body.style.background = color;
         fetchData()
     }, [])
 
@@ -39,7 +39,9 @@ export const ViewLocalProfile = () => {
 
 
     return (
-        <div>
+        <div style={Background()}>
+            <HomeNavbar isArtist= {true}/>
+            <div className="space"/>
             <br/>
             <br/>
             <div className="titleEditProf">

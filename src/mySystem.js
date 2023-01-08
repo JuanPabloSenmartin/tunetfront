@@ -292,9 +292,137 @@ const MySystem = {
                errorCallback()
            }
        })
-   }
+   },
 
-   
+   getAllPosts: async (okCallback, errorCallback) => {
+    fetch(`${restApiEndpoint}/getAllPosts`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(resp => {
+        if (resp.status === 201) {
+            resp.json().then(body => okCallback(body))
+        } else {
+            errorCallback()
+        }
+    })
+    },
+    addGalleryImage: async (data, okCallback, errorCallback) => {
+        fetch(`${restApiEndpoint}/addGalleryImage`, {
+            method: 'POST',
+            
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(resp => {
+            if (resp.status === 201) {
+                okCallback()
+            } else {
+                errorCallback()
+            }
+        })
+    },
+
+    getGalleryImages: async (mail, okCallback, errorCallback) => {
+     fetch(`${restApiEndpoint}/getGalleryImages`, {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(mail)
+     }).then(resp => {
+         if (resp.status === 201) {
+             resp.json().then(body => okCallback(body))
+         } else {
+             errorCallback()
+         }
+     })
+     },
+     deleteGalleryImage: async (data, okCallback, errorCallback) => {
+         fetch(`${restApiEndpoint}/deleteGalleryImage`, {
+             method: 'POST',
+             
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify(data)
+         }).then(resp => {
+             if (resp.status === 201) {
+                 okCallback()
+             } else {
+                 errorCallback()
+             }
+         })
+     },
+
+     changeProfilePic: async (email, okCallback, errorCallback) => {
+         fetch(`${restApiEndpoint}/changeProfilePic`, {
+             method: 'POST',
+             
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify(email)
+         }).then(resp => {
+             if (resp.status === 201) {
+                 resp.json().then(body => okCallback(body))
+             } else {
+                 errorCallback()
+             }
+         })
+     },
+     addSong: async (data, okCallback, errorCallback) => {
+         fetch(`${restApiEndpoint}/addSong`, {
+             method: 'POST',
+             
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify(data)
+         }).then(resp => {
+             if (resp.status === 201) {
+                 okCallback()
+             } else {
+                 errorCallback()
+             }
+         })
+     },
+ 
+     getSongs: async (mail, okCallback, errorCallback) => {
+      fetch(`${restApiEndpoint}/getSongs`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(mail)
+      }).then(resp => {
+          if (resp.status === 201) {
+              resp.json().then(body => okCallback(body))
+          } else {
+              errorCallback()
+          }
+      })
+      },
+      deleteSong: async (data, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/deleteSong`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  okCallback()
+              } else {
+                  errorCallback()
+              }
+          })
+      }
+
+
     
 }
 

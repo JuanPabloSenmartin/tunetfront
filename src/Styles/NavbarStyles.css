@@ -1,0 +1,153 @@
+.NavbarItems{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 0 30px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    width: 95%;
+    height: 80px;
+    border-radius: 13px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.logo{
+    justify-self: start;
+    cursor: pointer;
+}
+.nav-menu{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 100px;
+    list-style: none;
+    align-items: center;
+    text-align: center;
+    justify-content:end;
+}
+.nav-links{
+    text-decoration: none;
+    font-size: 110%;
+    color: #222;
+    padding: 0.7rem 1rem;
+    white-space: nowrap;
+}
+.nav-links:hover{
+    background: rgb(80, 80, 238);
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out; 
+}
+.navLinkIcons{
+    padding-right: 10px;
+}
+.dropdown-logo{
+    cursor: pointer;
+    
+}
+
+.bars{
+    color: #fff;
+}
+.menu-icon{
+    display: none;
+}
+.nav-links-mobile {
+    padding: 8px 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #1888ff;
+  }
+  
+.nav-links-mobile:hover {
+    padding: 6px 18px;
+    transition: all 0.3s ease-out;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease-out;
+}
+
+.nav-links-signin-btn {
+    font-size: 23px;
+  text-align: center;
+  color: white;
+  padding: 10px 30px 10px 30px;
+  text-decoration: none;
+  width: 110px; height: 30px; 
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: #3a57af; 
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s;
+  position: relative;
+}
+  
+  .nav-links-signin-btn:hover {
+    top: 3px;
+  background-color:#8860D0;
+  -webkit-box-shadow: none; 
+  -moz-box-shadow: none; 
+  box-shadow: none;
+  cursor: pointer;
+  }  
+
+@media screen and (max-width: 850px) {
+    .NavbarItems{
+        z-index: 99;
+    }
+    .nav-menu{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background: rgba(255,255,255,.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, .37);
+        backdrop-filter: blur(4px);
+        border-radius: 13px;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: -110%;
+        align-items: stretch;
+        padding: 80px 0 30px 0;
+        margin: 0;
+        z-index: -1;
+        transition: all 0.3s ease-in-out;
+    }
+    .nav-menu.active{
+        left: 0%;
+    }
+    .nav-links{
+        display: block;
+        widows: 100%;
+        padding: 2rem 0;
+        color: #222;
+    }
+    .nav-links:hover{
+        background: rgba(255,255,255,.25);
+        backdrop-filter: blur(20px);
+    }
+    .menu-icon{
+        display: block;
+    }
+    .nav-links-mobile{
+        padding: 1.5rem;
+        display: block;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: bold;
+        width: 80%;
+        margin: auto;
+    }
+}

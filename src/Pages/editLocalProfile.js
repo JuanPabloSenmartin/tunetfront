@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from "react";
 import {useMySystem} from "../mySystem";
-import {useNavigate} from "react-router";
 import { useTokenManager } from "../tokenManager";
 import '../Styles/editLocalProfile.css'
 import { useBase64Helper } from "../base64";
+import HomeNavbar from "../Components/HomeNavbar";
+import Background from "../Components/Background";
+import {FaUserAlt} from 'react-icons/fa'
+import {FaMapMarkerAlt} from 'react-icons/fa'
+import {FaPhone} from 'react-icons/fa'
+import {FaPencilAlt} from 'react-icons/fa'
+import {FaRegStar} from 'react-icons/fa'
+import {FaTimes} from 'react-icons/fa'
+import {FaTrash} from 'react-icons/fa'
+import {FaCamera} from 'react-icons/fa'
+import {FaImages} from 'react-icons/fa'
+import Rating from '@mui/material/Rating';
+
 
 
 export const EditLocalProfile = () => {
@@ -13,23 +25,25 @@ export const EditLocalProfile = () => {
     const [location, setLocation] = useState('')
     const [username, setUsername] = useState('')
     const [description, setDescription] = useState('')
-    const [pictureUrl, setPictureUrl] = useState('')
     const [profilePictureUrl, setProfilePictureUrl] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
-    const [rating, setRating] = useState('')
+    const [rating, setRating] = useState(0)
+    const [images, setImages] = useState([])
+    const [popped, setPopped] = useState(false)
+    const [poppedImage, setPoppedImage] = useState('')
+    const [x, setX] = useState(false)
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [successMsg, setSuccessMsg] = useState(undefined)
-    const navigate = useNavigate();
     const mySystem = useMySystem();
     const Base64Helper = useBase64Helper();
 
 
 
     useEffect(() => {
-        const color = "#8860D0";
-        document.body.style.background = color;
         fetchData()
-    }, [])
+    }, [x])
+
+    
 
     const fetchData = () => {
         //fetches all information from this user
@@ -38,11 +52,20 @@ export const EditLocalProfile = () => {
             setLocation(info.location)
             setUsername(info.username)
             setDescription(info.description)
-            setPictureUrl(info.pictureUrl)
-            setProfilePictureUrl(info.profilePictureUrl)
             setPhoneNumber(info.phoneNumber)
             setRating(info.rating)
+            
+            mySystem.getGalleryImages(info.email,
+                (data) => setImages(data),
+                () => setErrorMsg('ERROR: CANNOT CONNECT WITH API') )
+            
+            
+            mySystem.getPicFromMail(info.email,
+                (data) => setProfilePictureUrl(data),
+                () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))    
         }, () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))
+
+        
     }
 
 
@@ -54,8 +77,6 @@ export const EditLocalProfile = () => {
             location: location,
             username: username,
             description: description,
-            pictureUrl: pictureUrl,
-            profilePictureUrl: profilePictureUrl,
             phoneNumber: phoneNumber
         })
     }
@@ -64,10 +85,11 @@ export const EditLocalProfile = () => {
         mySystem.refreshDatabaseAfterProfileEdit(data, 
             () => {
                 setSuccessMsg('Your profile has been edited successfully!')
-                navigate("/localHome");
             }, 
             () => setErrorMsg('Your profile couldn`t be updated due to an error with out API'))
     }
+
+    
 
     
     
@@ -84,13 +106,15 @@ export const EditLocalProfile = () => {
     const pictureUrlChange = (event) => {
         Base64Helper.convertToBase64(event.target.files[0],
             (i) => {
-                setPictureUrl(i)
+                addGalleryPicture(i)
             })
     }
     const profilePictureUrlChange = (event) => {
         Base64Helper.convertToBase64(event.target.files[0],
-            (i) => {
-                setProfilePictureUrl(i)
+            (img) => {
+                setProfilePictureUrl(img)
+                mySystem.changeProfilePic({email: email, imageUrl: img},
+                    () => setX(!x))
             })
         
     }
@@ -98,32 +122,54 @@ export const EditLocalProfile = () => {
         setPhoneNumber(event.target.value)
     }
 
+    const popImg = (img) => {
+        setPoppedImage(img);
+        setPopped(true)
+    }
+
+    const eliminateImg = (img) => {
+        setPopped(false);
+        mySystem.deleteGalleryImage({email: email, imageUrl: img},
+            () => setX(!x))
+        
+    }
+
+    const addGalleryPicture = (img) =>{
+        mySystem.addGalleryImage({email: email, imageUrl: img}, 
+            () => setX(!x))
+    }
     
     return (
         
-        <div>
-            <br/>
-            <br/>
-            <div className="titleEditProf">
-                   <h1 className="profh1">Modify your profile</h1>
-            </div>
-            <form onSubmit={handleSubmit} className="profForm">
-                
-                <div className="profile-Pic">
-                    <div className="ite">
-                        <img src={profilePictureUrl} />
-                    </div>
-                    <div className="change-Profile-Picture">
-                        <input type="file" 
-                        title= " "
+        <div style={Background()}>
+            <HomeNavbar isArtist= {false}/>
+            <div className="space"/>
+            
+            <div className="editProf-top">
+            <div className="editProf-image-div">
+                <div className="change-pic-div">
+                    <label htmlFor="filePicker" className="change-pic-label">
+                        <FaCamera/> Change profile picture
+                        </label>
+                        <input id="filePicker" 
+                        style={{visibility:"hidden"}} 
+                        type="file"
                         accept="image/png, image/jpeg, image/jpg"
                         onChange={profilePictureUrlChange}/>
-                    </div>
                 </div>
+                <div className="editProf-profPic-div">
+                    <img src={profilePictureUrl} className="editProf-profPic-image"/>
+                </div >
+                
+                
+            </div>
 
+            <div className="editProf-form-div">
+                <form onSubmit={handleSubmit} className="profForm">
                 <div className="profile-Settings">
-                    <div>
-                        <label className="profLabel">Username</label>
+
+                    <div className="editProf-info">
+                        <label className="profLabel"><FaUserAlt/> Username</label>
                         <input type="text"
                             placeholder="Username"
                             value={username}
@@ -131,17 +177,17 @@ export const EditLocalProfile = () => {
                             onChange={usernameChange}/>
                     </div>
                     <br/>
-                    <div>
-                    <label className="profLabel">Location</label>
+                    <div className="editProf-info">
+                        <label className="profLabel"><FaMapMarkerAlt/> Location</label>
                         <input type="text"
-                            placeholder="Location"
-                            value={location}
-                            name="location"
-                            onChange={locationChange}/>
+                                placeholder="Location"
+                                value={location}
+                                name="location"
+                                onChange={locationChange}/>
                     </div>
                     <br/>
-                    <div>
-                        <label className="profLabel">Phone number</label>
+                    <div className="editProf-info">
+                        <label className="profLabel"><FaPhone/> Phone number</label>
                         <input type="text"
                             placeholder="Phone number"
                             value={phoneNumber}
@@ -149,39 +195,66 @@ export const EditLocalProfile = () => {
                             onChange={phoneNumberChange}/>
                     </div>
                     <br/>
-                    <div>
-                        <label className="DescriptionLabel">Description</label>
+                    <br/>
+                    <div className="editProf-info">
+                        <label className="DescriptionLabel"><FaPencilAlt/> Description</label>
                         <textarea rows="4" cols="50" type="text"
                             placeholder="Add a description"
                             value={description}
                             name="description"
                             onChange={descriptionChange}/>
                     </div>
-                    <div>
-                        <label className="profLabel">Rating</label>
-                        <p className="resp">{rating}</p>
-                    </div>
-                    
                 </div>
 
-                
+                <div className="editprof-rightside">
+                    <div className="editProf-info">
+                        <label className="profLabel"><FaRegStar/> Your Rating</label>
+                        <Rating name="read-only" value={rating} readOnly />
+                        
+                    </div>
+                    {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
+                    {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
 
-                <div className="imagesProf">
-                    <h1 className="imagesh1">Images</h1>
-                    <img src={pictureUrl} className="imgLocalProf"/>
-                    <div className="change-Profile-Picture">
-                        <input type="file" 
-                        title= " "
+                    <button type="submit" className="submitButtonEdit">Save Changes</button>
+                </div>
+                
+            </form>
+            </div>
+            </div>
+            <hr className="editProf-hr"/>
+
+            <div className="imagesProfDiv">
+                    <h1 className="imagesh1">Image gallery</h1>
+                    <div className="add-pic-div">
+                        <label htmlFor="filePicker2" className="add-pic-label">
+                        <FaImages/> Add picture to your gallery
+                        </label>
+                        <input id="filePicker2" 
+                        style={{visibility:"hidden"}} 
+                        type="file"
                         accept="image/png, image/jpeg, image/jpg"
                         onChange={pictureUrlChange}/>
                     </div>
-                </div>
+                    
 
-                {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
-                {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
+                    
+                    <div className="gallery">
+                        {images.map((item, index)=>{
+                            return(
+                                <div className="images-in-gallery" key={index} onClick={() => popImg(item)}>
+                                    <img src={item} style={{width: '100%'}}/>
+                                </div>
+                            )
+                        })}
+                    </div>
+            </div>
 
-                <button type="submit" className="submitButtonEdit">Save Changes</button>
-            </form> 
+            <div className={popped ? "popped-img open" : "popped-img"}>
+                <img src={poppedImage}/>
+                <FaTimes className="popped-img-closed-Icon" onClick={() => setPopped(false)}/>
+                <FaTrash className="popped-img-trash-Icon" onClick={() => eliminateImg(poppedImage)}/>
+            </div>
+
         </div>
     )
 }

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import {useMySystem} from "../mySystem";
 import {useNavigate} from "react-router";
 import { useTokenManager } from "../tokenManager";
+import HomeNavbar from "../Components/HomeNavbar";
+import Background from "../Components/Background";
 import '../Styles/createPost.css'
 
 
@@ -18,8 +20,6 @@ export const CreatePost = (props) => {
     const mySystem = useMySystem();
 
     useEffect(() => {
-        const color = "#8860D0";
-        document.body.style.background = color;
         fetchMail();
     }, [])
 
@@ -75,8 +75,10 @@ export const CreatePost = (props) => {
 
 
     return (
-        <div>
-            <br/>
+        <div style={Background()}>
+            <HomeNavbar isArtist= {false}/>
+            <div className="space"/>
+
             <div className="titleEditProf">
                    <h1 className="profh1">Create new post</h1>
             </div>

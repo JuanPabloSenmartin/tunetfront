@@ -79,9 +79,9 @@ export const ChatComponent = (props) => {
 
     return (
         <div>
-		<header >
-			<h1>{chatData.usernameHIM}</h1>
-		</header>
+		    <header className="chat-header">
+			    <h1>{chatData.usernameHIM}</h1>
+		    </header>
 		<ul id="chat" >
 			{prevMessages == "" ? '' : 
             prevMessages.split('~').map((element) => {
@@ -122,7 +122,7 @@ export const ChatComponent = (props) => {
             }
 
 		</ul>
-		<footer>
+		<footer className="chat-footer">
 			<textarea placeholder="Type your message" onChange={handleMessageChange} value={message}></textarea>
 			
 			<button onClick={sendMessage}>Send</button>

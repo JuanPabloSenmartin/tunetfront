@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import '../Styles/chat.css'
-
+import HomeNavbar from "../Components/HomeNavbar";
 import { useTokenManager } from "../tokenManager";
 import {useMySystem} from "../mySystem";
 import { useLocation } from 'react-router-dom'
 import { ChatComponent } from "../Components/chatComponent";
 import {useNavigate} from "react-router";
+import Background from "../Components/Background";
 
 
 export const Chat = () => {
@@ -59,60 +60,47 @@ export const Chat = () => {
             setSelectedUserChat(u[0])
         }
     }
-    const handleBackClick = () => {
-        if(data.isMEartist){
-            navigate("/artistHome")
-        }
-        else{
-            navigate("/localHome")
-        }
-    }
 
     const handleClick = (i) => {
         setSelectedUserChat(i)
     }
     return (
-        <div>
-            <div id="container">
-	            <aside>
-		        <ul>
-                {data.fromPost ? 
-                <li onClick={() => handleClick(dataOfSpecificHIM)} key={data.emailHIM}>
-                    <img src={dataOfSpecificHIM.profPicHIM}/>
-                    <div>
-                    <h2>{dataOfSpecificHIM.usernameHIM}</h2>
-                </div>
-                </li> 
-                : ''}
+        <div style={Background()}>
+            <HomeNavbar isArtist= {data.isMEartist}/>
+            <div className="space"/>
+
+            <div className="chat-container">
+	            <aside className="chat-aside">
+		            <ul className="chat-ul">
+                        {data.fromPost ? 
+                            <li onClick={() => handleClick(dataOfSpecificHIM)} key={data.emailHIM} className="chat-li">
+                                <img src={dataOfSpecificHIM.profPicHIM}/>
+                                <h2>{dataOfSpecificHIM.usernameHIM}</h2>
+                            </li> 
+                        : ''}
 
                     
-                {usersData.map((info) => {
-                    if(info.emailHIM == data.emailHIM){
-                        
-                    }
-                    else{
-                        return(
-                            <li onClick={() => handleClick(info)} key={info.emailHIM}>
-                            <img src={info.profPicHIM} alt=""/>
-                            <div>
-                                <h2>{info.usernameHIM}</h2>
-                            </div>
-                                
-                        </li>
-                        )
-                    }
-                })}                   
-                </ul>
-            </aside>
+                        {usersData.map((info) => {
+                            if(info.emailHIM == data.emailHIM){}
+                            else{
+                                return(
+                                <li onClick={() => handleClick(info)} key={info.emailHIM} className="chat-li">
+                                    <img src={info.profPicHIM} alt=""/>
+                                        <h2>{info.usernameHIM}</h2>
+                                </li>
+                                )
+                            }
+                        })}                   
+                    </ul>
+                </aside>
             
-            <main> 
-                <button onClick={handleBackClick}>Go back</button>
-                {(usersData.length != 0 || data.fromPost) ? <ChatComponent selectedUser={selectedUserChat} key={selectedUserChat.id}/> : 
-                "" 
-            }  
-            </main>
+                <main className="chat-main"> 
+                    {(usersData.length != 0 || data.fromPost) ? <ChatComponent selectedUser={selectedUserChat} key={selectedUserChat.id}/> : 
+                    "" 
+                    }  
+                </main>
 	
-</div>
+            </div>
         </div>
     )
 }

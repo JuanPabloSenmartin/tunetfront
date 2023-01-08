@@ -1,11 +1,15 @@
 import {React, useState} from "react";
 import '../Styles/login.css'
 import {Link} from "react-router-dom";
-import logoTest from '../Images/logoTest1.png'
 import {useMySystem} from "../mySystem";
 import {useNavigate} from "react-router";
 import { useTokenManager } from "../tokenManager";
-import background from '../Images/back1.jpg';
+import InitialNavbar from "../Components/InitialNavbar";
+import {FaEnvelope} from 'react-icons/fa'
+import {FaKey} from 'react-icons/fa'
+import Background from "../Components/Background";
+
+
 
 export const Login = () => {
     
@@ -16,14 +20,6 @@ export const Login = () => {
     const navigate = useNavigate();
     const mySystem = useMySystem();
     const myTokenManager = useTokenManager();
-    const myStyle={
-        backgroundImage: `url(${background})`,
-        marginTop:'-30px',
-        height:'110vh',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-    };
-    
 
 
     const handleSubmit = async e => {
@@ -70,33 +66,40 @@ export const Login = () => {
     
 
     return(
-        <div style={myStyle}>
+        <div style={Background()} className="login-styles">
             
-            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' 
-            rel='stylesheet' type='text/css' />
-            <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet" />
+            <InitialNavbar/>
+            <div className="space"/>
 
-            <div className="testbox">
-                <img src={logoTest}/>
-                <h1>Log in</h1>
-
-                <form onSubmit={handleSubmit}>
-                    <label id="icon" ><i className="icon-envelope "></i></label>
+            <h1 className="big-title">WELCOME TO TUNET</h1>
+            <div className="testbox-login">
+                <h1 className="small-title">Sign in</h1>
+                <br/>
+                
+                <form onSubmit={handleSubmit} className="login-form">
+                    <hr />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div className="login-label-input">
+                    <label id="icon" ><FaEnvelope/></label>
                     <input type="text"
                             placeholder="Mail"
                             value={mail}
                             name="email"
                             onChange={mailChange}/>
-                    <label id="icon" ><i className="icon-shield"></i></label>
+                    </div>
+                    <label id="icon" ><FaKey/></label>
                     <input type="password"
                             id="floatingPassword"
                             placeholder="Password"
                             name="password"
                             value={password}
                             onChange={passwordChange}/>
-                    <p>Not registered yet? <Link to="/register" style={{paddingLeft: 13, color: 'inherit',  backgroundColor: 'inherit'}}>Register here</Link></p>
-                    <button className="submitButton" type="submit">Log in</button>
-
+                    <div className="bottom-text">
+                        <p className="login-p">Not registered yet? <Link to="/register" style={{paddingLeft: 13, color: 'inherit',  backgroundColor: 'inherit'}}>Register here</Link></p>
+                        <button className="submitButton" type="submit">Sign in</button>
+                    </div>
                     {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                 </form> 
             </div>
