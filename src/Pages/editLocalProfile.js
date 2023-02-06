@@ -169,6 +169,7 @@ export const EditLocalProfile = () => {
                 <div className="profile-Settings">
 
                     <div className="editProf-info">
+                        <h1 className="imagesh1">Profile settings</h1>
                         <label className="profLabel"><FaUserAlt/> Username</label>
                         <input type="text"
                             placeholder="Username"

@@ -1,22 +1,11 @@
-.profLabelView{
-    display: inline-block;
-  margin-left: 20px;
-  margin-bottom: 15px;
-  font-size: 160%;
-  color: black;
-  width: 250px;
+.viewProf-info{
+    margin-bottom: 3%;
 }
-.resp{
-    font-size: 130%;
-    color: black;
-}
-.imagesView{
-    color: black;
+.viewprofile-Settings{
     float: left;
-    margin-right: 20px;
-}
+    width: 50%;
+    height: 100%;
+    margin-top: 3%;
+  }
 
-.imgLocalProfView{
-    max-width: 20%;
-    float:left;
-}
+ 

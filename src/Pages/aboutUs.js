@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import InitialNavbar from "../Components/InitialNavbar";
 import HomeNavbar from "../Components/HomeNavbar";
 import '../Styles/aboutUs.css'
@@ -6,11 +6,15 @@ import {useTokenManager} from "../tokenManager"
 import { useLocation } from 'react-router-dom'
 import Background from "../Components/Background";
 
+
+
 export const AboutUs = () => {
     const auth = useTokenManager()
     const token = auth.getToken()
     const location = useLocation()
     const data = location.state
+
+
 
     return (
         <div style={Background()}>

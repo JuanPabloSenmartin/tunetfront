@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom'
 import { ChatComponent } from "../Components/chatComponent";
 import {useNavigate} from "react-router";
 import Background from "../Components/Background";
+import {FaRocketchat} from 'react-icons/fa'
 
 
 export const Chat = () => {
@@ -65,17 +66,34 @@ export const Chat = () => {
         setSelectedUserChat(i)
     }
     return (
-        <div style={Background()}>
+        <div 
+        style={Background()}
+        >
             <HomeNavbar isArtist= {data.isMEartist}/>
             <div className="space"/>
 
             <div className="chat-container">
 	            <aside className="chat-aside">
+                    <div className="chats-h">
+                        <div className="chat-icon-title-div">
+                            <FaRocketchat className="chat-icon-title"/>
+                        </div>
+                        <div className="chats-title-div">
+                            <h2 className="chats-title">Chats</h2>
+                        </div>
+                        
+                    </div>
+                    <hr></hr>
 		            <ul className="chat-ul">
                         {data.fromPost ? 
                             <li onClick={() => handleClick(dataOfSpecificHIM)} key={data.emailHIM} className="chat-li">
-                                <img src={dataOfSpecificHIM.profPicHIM}/>
-                                <h2>{dataOfSpecificHIM.usernameHIM}</h2>
+                                <div className="img-li-chat-div">
+                                    <img src={data.profPicHIM} className="chat-img-li"/>
+                                </div>
+                                <div className="chat-li-h2-div">
+                                    <h2 className="chat-li-h2">{data.usernameHIM}</h2>
+                                </div>
+                                
                             </li> 
                         : ''}
 
@@ -85,8 +103,12 @@ export const Chat = () => {
                             else{
                                 return(
                                 <li onClick={() => handleClick(info)} key={info.emailHIM} className="chat-li">
-                                    <img src={info.profPicHIM} alt=""/>
-                                        <h2>{info.usernameHIM}</h2>
+                                    <div className="img-li-chat-div">
+                                        <img src={info.profPicHIM} alt="" className="chat-img-li"/>
+                                    </div>
+                                    <div className="chat-li-h2-div">
+                                        <h2 className="chat-li-h2">{info.usernameHIM}</h2>
+                                    </div>
                                 </li>
                                 )
                             }

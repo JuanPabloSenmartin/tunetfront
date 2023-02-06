@@ -5,6 +5,8 @@ import { useTokenManager } from "../tokenManager";
 import HomeNavbar from "../Components/HomeNavbar";
 import Background from "../Components/Background";
 import '../Styles/createPost.css'
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 
 export const CreatePost = (props) => {
@@ -14,6 +16,16 @@ export const CreatePost = (props) => {
     const [title, setTitle] = useState('')
     const [date, setDate] = useState('')
     const [description, setDescription] = useState('')
+    const [genres, setGendres] = useState([{ value: 'any', label: 'Any' }])
+    const genreOptions = [
+        { value: 'any', label: 'Any' },
+        { value: 'rock', label: 'Rock' },
+        { value: 'pop', label: 'Pop' },
+        { value: 'jazz', label: 'Jazz' },
+        { value: 'blues', label: 'Blues' },
+        { value: 'classical', label: 'Classical' }
+    ]
+    const animatedComponents = makeAnimated();
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [uncompleteFormMsg, setUncompleteFormMsg] = useState(undefined)
     const navigate = useNavigate();
@@ -41,9 +53,17 @@ export const CreatePost = (props) => {
             localEmail: mail,
             title: title,
             date: date,
-            description: description
+            description: description,
+            genres: getGenreValues()
         })
         
+    }
+    const getGenreValues = () => {
+        const arr = [];
+        genres.map((item)=> {
+            arr.push(item.value);
+        })
+        return arr;
     }
     const submitPost = (post) => {
         mySystem.persistPost(
@@ -111,6 +131,27 @@ export const CreatePost = (props) => {
                             name="description"
                             onChange={descriptionChange}/>
                     </div>
+                    <br/>
+                    <div>
+                        <label className="profLabel">Genres</label>
+                        {/* {genres.map((item, index)=>{
+                            return(
+                                item
+                            )
+                        })} */}
+                        
+                    </div>
+                    {/* <GenreDropdown/> */}
+                    <Select
+                        defaultValue={[genreOptions[0]]}
+                        isMulti
+                        components={animatedComponents}
+                        name="genres"
+                        options={genreOptions}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        onChange={(choice) => setGendres(choice)}
+                    />
                     
                 </div>
 

@@ -16,7 +16,7 @@ class InitialNavbar extends Component{
     render(){
         return(
             <nav className="NavbarItems">
-                <h1 className="navLogo">LOGO</h1>
+                <h1 className="navLogo">TUNET</h1>
                 <div className="menu-icon" onClick={this.handleBarClick}>
                     {this.state.clicked ? 
                     <FaTimes className="bars"/>

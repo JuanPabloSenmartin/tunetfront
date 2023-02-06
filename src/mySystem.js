@@ -56,7 +56,7 @@ const MySystem = {
             }
         }).catch(e => errorCallback("Unable to connect to My System API"))
     },
-    getPosts: async (token, okCallback, errorCallback) => {
+    getLocalPosts: async (token, okCallback, errorCallback) => {
         fetch(`${restApiEndpoint}/posts`, {
             method: 'POST',
             
@@ -159,7 +159,7 @@ const MySystem = {
        })
    },
     
-   addArtistToPostList: async (data, okCallback, uncompleteFormErrorCallback, alreadySubmitedErrorCallback) => {
+   addArtistToPostList: async (data, okCallback) => {
        fetch(`${restApiEndpoint}/artistList`, {
            method: 'POST',
            
@@ -170,11 +170,22 @@ const MySystem = {
        }).then(resp => {
            if (resp.status === 201) {
                okCallback()
-           } else if (resp.status === 404){
-               uncompleteFormErrorCallback()
-           } else {
-               alreadySubmitedErrorCallback()
-           }
+           } 
+       })
+   },
+    
+    deleteArtistFromPostList: async (data, okCallback) => {
+       fetch(`${restApiEndpoint}/deleteArtistFromPostList`, {
+           method: 'POST',
+           
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(data)
+       }).then(resp => {
+           if (resp.status === 201) {
+               okCallback()
+           } 
        })
    },
 
@@ -195,14 +206,14 @@ const MySystem = {
        })
    },
 
-   getAllPosts: async (token, okCallback, errorCallback) => {
+   getAllPosts: async (data, okCallback, errorCallback) => {
        fetch(`${restApiEndpoint}/getAllPosts`, {
            method: 'POST',
            
            headers: {
                'Content-Type': 'application/json'
            },
-           body: JSON.stringify(token)
+           body: JSON.stringify(data)
        }).then(resp => {
            if (resp.status === 201) {
                resp.json().then(body => okCallback(body))
@@ -293,21 +304,6 @@ const MySystem = {
            }
        })
    },
-
-   getAllPosts: async (okCallback, errorCallback) => {
-    fetch(`${restApiEndpoint}/getAllPosts`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(resp => {
-        if (resp.status === 201) {
-            resp.json().then(body => okCallback(body))
-        } else {
-            errorCallback()
-        }
-    })
-    },
     addGalleryImage: async (data, okCallback, errorCallback) => {
         fetch(`${restApiEndpoint}/addGalleryImage`, {
             method: 'POST',
@@ -420,10 +416,107 @@ const MySystem = {
                   errorCallback()
               }
           })
+      },
+      getPostulatedPosts: async (token, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/getPostulatedPosts`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(token)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
+      },
+      getOldPosts: async (token, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/getOldPosts`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(token)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
+      },
+
+      getPostFeed: async (data, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/getPostFeed`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
+      },
+
+      getPostsInfo: async (data, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/getPostsInfo`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
+      },
+
+      acceptArtistInPost: async (data, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/acceptArtistInPost`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
+      },
+
+      getLocalPostsInfo: async (data, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/getLocalPostsInfo`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
       }
-
-
-    
 }
 
 const useMySystem = () => MySystem

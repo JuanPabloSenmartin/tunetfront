@@ -37,7 +37,6 @@ export const EditArtistProfile = () => {
     const [x, setX] = useState(false)
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [successMsg, setSuccessMsg] = useState(undefined)
-    const navigate = useNavigate();
     const mySystem = useMySystem();
     const Base64Helper = useBase64Helper();
 

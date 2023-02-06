@@ -14,6 +14,7 @@ import {Chat} from './Pages/chat'
 import { CreatePost } from "./Pages/createPost"
 import { RequireAuth } from "./Components/RequireAuth"
 import { AboutUs } from "./Pages/aboutUs"
+import { MyEvents } from "./Pages/myEvents"
 
 
 
@@ -37,9 +38,7 @@ const App = () => (
             } />
 
             <Route path="viewArtistProfile" element={
-                <RequireAuth>
-                    <ViewArtistProfile/>
-                </RequireAuth>
+                <ViewArtistProfile/>
             } />
             <Route path="editArtistProfile" element={
                 <RequireAuth>
@@ -47,9 +46,7 @@ const App = () => (
                 </RequireAuth>
             } />
             <Route path="viewLocalProfile" element={
-                <RequireAuth>
-                    <ViewLocalProfile/>
-                </RequireAuth>
+                <ViewLocalProfile/>
             } />
             <Route path="editLocalProfile" element={
                 <RequireAuth>
@@ -64,6 +61,11 @@ const App = () => (
             <Route path="createPost" element={
                 <RequireAuth>
                     <CreatePost/>
+                </RequireAuth>
+            } />
+            <Route path="myEvents" element={
+                <RequireAuth>
+                    <MyEvents />
                 </RequireAuth>
             } />
         </Routes>

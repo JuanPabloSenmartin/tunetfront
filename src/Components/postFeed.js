@@ -4,13 +4,13 @@ import { PostInArtistFeed } from "./postInArtistFeed";
 
 
 export const PostFeed = (props) => {
-    const posts = props.posts
+    
     return(
             <div className="postsFeed">
-                {posts.map((info) => {
+                {props.posts.map((info, index) => {
                     return(
                         <div>
-                            <PostInArtistFeed post={info} key={info.title}  />
+                            <PostInArtistFeed post={info} isSignedIn={props.isSignedIn}  />
                             <br/>
                             <br/>    
                         </div>

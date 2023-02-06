@@ -18,7 +18,6 @@ export const LocalHome = () => {
     const navigate = useNavigate();
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [posts, setPosts] = useState([])
-    
     const [selectedPost, setSelectedPost] = useState(undefined)
     
 
@@ -29,11 +28,20 @@ export const LocalHome = () => {
     
 
     const fetchPosts = () => {
-        mySystem.getPosts(token,
+        mySystem.getLocalPosts(token,
              (p) => {
                  setPosts(p)
             },
               () => setErrorMsg('ERROR'));
+    }
+    const acceptArtist = (postId, artistListId) => {
+        mySystem.acceptArtistInPost({
+            token:token,
+            artistListId: artistListId,
+            postId: postId
+        },
+        () => {},
+        ()=> {})
     }
 
 
@@ -50,10 +58,10 @@ export const LocalHome = () => {
 
                 <h1 className="current-posts-title">Your current posts</h1>
                 
-                {posts.map((info) => {
+                {posts.map((info, index) => {
                     return(
                         <div>
-                            <Post setSelectedPost={setSelectedPost}  post={info} opened={selectedPost && info.id === selectedPost.id} key={info.id}  />
+                            <Post setSelected={setSelectedPost} selected={selectedPost} key={index} post={info} acceptArtist={acceptArtist} />
                         </div>
                     )
                 })}

@@ -16,7 +16,7 @@ export const ChatComponent = (props) => {
 
     var webSocket = new WebSocket("ws://" + "localhost:4321" + "/chat");
     webSocket.onmessage = function (msg) { updateChat(msg.data); };
-    webSocket.onclose = function () { alert("WebSocket connection closed") };
+    // webSocket.onclose = function () { alert("WebSocket connection closed") };
     webSocket.onopen = function() {onConect(webSocket)};
 
     useEffect(() => {
@@ -78,14 +78,18 @@ export const ChatComponent = (props) => {
     }
 
     return (
-        <div>
+        <div className="chat-component">
 		    <header className="chat-header">
-			    <h1>{chatData.usernameHIM}</h1>
+                <div className="img-chat-header-div">
+                    <img src={chatData.profPicHIM} className="img-chat-header"/>
+                </div>
+                <div className="chat-header-h1-div">
+                    <h1 className="title-chat-header">{chatData.usernameHIM}</h1>
+                </div>
 		    </header>
 		<ul id="chat" >
 			{prevMessages == "" ? '' : 
-            prevMessages.split('~').map((element) => {
-                
+            prevMessages.split('~').map((element, index) => {
                 if(chatData.isArtistME == "true"){
                     
                     if(element.substring(0, 1) == 2){
@@ -97,7 +101,6 @@ export const ChatComponent = (props) => {
                 }
                 else{
                     if(element.substring(0, 1) == 1){
-                        
                         return <li className="me"><div className="entete"></div><div className="message">{element.substring(1)}</div></li>
                     }
                     else {
@@ -110,7 +113,6 @@ export const ChatComponent = (props) => {
             {
                 newMessages ? 
                 newMessages.map((element) => {
-                    console.log(element)
                     if(element.substring(0, 1) == 1){
                         return <li className="me"><div className="entete"></div><div className="message">{element.substring(1)}</div></li>
                     }

@@ -2,76 +2,53 @@ import React, { useState, useEffect } from "react";
 import '../Styles/post.css'
 import { Link } from "react-router-dom";
 import {useMySystem} from "../mySystem";
-import { StarRating } from "./starRating";
+import Rating from '@mui/material/Rating';
+import {FaSortDown} from 'react-icons/fa'
+import {FaSortUp} from 'react-icons/fa'
+
 
 
 
 export const Post = (props) => {
+    const post = props.post;
     
-    const title = props.post.title;
-    const postID = props.post.id;
-    const description = props.post.description;
-    const date = props.post.date;
-    const [errorMsg, setErrorMsg] = useState(undefined)
-    const mySystem = useMySystem()
-    const [artistList, setArtistList] = useState([])
-    
-    useEffect(() => {
-        handleArtistList(postID)
-    }, [])
-
-    const handleArtistList = (postID) => {
-        mySystem.getArtistList(postID,
-            (i) => setArtistList(i),
-            () => setErrorMsg('Unable to get artist list')
-            )
-    }
-
-    const handleClick = () => {
-        props.setSelectedPost(props.post)
-    }
-
+ 
     
     return(
             <div className="post">
-                <nav className="post-nav">
-                    <label onClick={handleClick} >
-                        <span className="post-span">{title}</span>
-                    </label>               
+                <div className="artistEvents-post-title-div">
+                        <div className="artistEvents-post-title-text">{post.title}</div>
+                        {props.selected == post ? <FaSortDown className="artistEvents-post-title-icon-down" onClick={()=> props.setSelected(undefined)}/> : <FaSortUp className="artistEvents-post-title-icon-up" onClick={()=> props.setSelected(post)}/>}
+                </div>
 
-                    <ul key={title}  >
-                        
-                       {props.opened ? artistList.map((i) => {
-                        
-                            return(
-                                <li className="slide" 
-                                key={i.artistEmail}>
-                                    mail:{i.artistEmail} 
-                                    
-                                    <Link to="/viewArtistProfile" state={{ mail: i.artistEmail} } >
-                                        <button >
-                                            View Profile
-                                        </button>
-                                    </Link> 
-                                    
-                                    <Link to="/chat" state={{
-                            emailHIM: i.artistEmail, 
-                            emailME: props.post.localEmail, 
-                            isMEartist: false,
-                            fromPost: true           
-                        }} >
-                                        <button >
-                                            Chat
-                                        </button>
-                                    </Link>
+                {props.selected == post && 
+                <ul>
+                    {post.artistList.map((data, index) => {
+                        return(
+                            <li key={index}>
+                                mail:{data.artistEmail}
+                                <Link to="/viewArtistProfile" state={{ mail: data.artistEmail, isSignedIn: true} } >
+                                         <button >
+                                             View Profile
+                                         </button>
+                                </Link> 
 
-                                    <StarRating email={i.artistEmail}/>
-                                    
-                                </li>
-                            )
-                        }) : "" }
-                    </ul>
-                </nav> 
+                                <Link to="/chat" state={{emailHIM: data.artistEmail, emailME: post.localEmail, isMEartist: false, fromPost: true}} >
+                                         <button >
+                                             Chat
+                                         </button>
+                                </Link>
+                                <Link to="/myEvents" state={{isArtist:false}} >
+                                    <button onClick={() => props.acceptArtist(post.id, data.id)}>Accept Artist</button>
+                                </Link>
+                                <Rating name="read-only" value={data.rating} readOnly />
+
+                            </li>
+                        )   
+                    })}
+                </ul>
+                }
+
             </div>
     )
     

@@ -1,0 +1,29 @@
+.localEvents-header-inside{
+    width: 50%;
+    height: 100%;
+    float: left;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 30px;
+	font-weight: 500;
+}
+.localEvents-header-inside:hover{
+    cursor: pointer;
+    background-color: #373737;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+.localEvents-header-inside-selected{
+    width: 50%;
+    height: 100%;
+    float: left;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 30px;
+    color: #fff;
+	font-weight: 700;
+    border-radius: 10px;
+    position: relative;
+}

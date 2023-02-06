@@ -1,6 +1,5 @@
 import React, { useEffect , useState} from "react";
 import '../Styles/artistHome.css'
-import {useNavigate} from "react-router";
 import {useMySystem} from "../mySystem";
 import { PostFeed } from "../Components/postFeed";
 import {useTokenManager} from "../tokenManager"
@@ -14,12 +13,11 @@ import FilterPanel from "../Components/filter/filterPanel";
 export const ArtistHome = () => {
     const auth = useTokenManager()
     const token = auth.getToken()
-    const navigate = useNavigate()
     const mySystem = useMySystem()
     const [posts, setPosts] = useState([])
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [selectedRating, setSelectedRating] = useState(null);
-    const [selectedRange, setSelectedRange] = useState([1, 500]);
+    const [selectedRange, setSelectedRange] = useState([0, 2000]);
     const [genre, setGenre] = useState([
     { id: 1, checked: true, label: 'Any' },    
     { id: 2, checked: false, label: 'Rock' },
@@ -28,12 +26,17 @@ export const ArtistHome = () => {
     ]);
 
     useEffect(() => {
-        fetchPostsInFeed()
+        fetchPostsInFeed({
+            token: token,
+            rating: selectedRating,
+            range: selectedRange,
+            genres: getCheckedGenres()
+        })
     }, [selectedRating, genre, selectedRange])
 
 
     const handleSelectRating = (event, value) =>
-    !value ? null : setSelectedRating(value);
+        !value ? null : setSelectedRating(value);
 
     const handleChangeChecked = (id) => {
         const genreStateList = genre;
@@ -47,15 +50,19 @@ export const ArtistHome = () => {
         setSelectedRange(value);
     };
 
-    // const fetchPostsInFeed = () => {
-    //     mySystem.getAllPosts(token, 
-    //         (i) => {
-    //             setPosts(i)
-    //         },
-    //         () => setErrorMsg('ERROR'));
-    // }
-    const fetchPostsInFeed = () => {
-        mySystem.getAllPosts(
+    const getCheckedGenres = () => {
+        const arr = [];
+        genre.map((item) => {
+            if(item.checked){
+                arr.push(item.label);
+            }
+        })
+        return arr;
+    }
+   
+    const fetchPostsInFeed = (data) => {
+        mySystem.getPostFeed(
+            data,
             (i) => {
                 setPosts(i)
             },
@@ -81,7 +88,7 @@ export const ArtistHome = () => {
                     />
                 </div>
                 <div className='posts-wrap'>
-                    <PostFeed posts={posts}/>
+                    <PostFeed posts={posts} isSignedIn={true} key="id1"/>
                 </div>
             </div>
             

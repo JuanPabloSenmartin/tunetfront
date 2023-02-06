@@ -6,8 +6,10 @@ import {FaBars} from 'react-icons/fa'
 import {FaTimes} from 'react-icons/fa'
 import {FaHome} from 'react-icons/fa'
 import {FaCog} from 'react-icons/fa'
+import {FaHistory} from 'react-icons/fa'
 import { Link } from "react-router-dom";
 import {Dropdown} from "./dropdown";
+
 
 
 class HomeNavbar extends Component{
@@ -23,7 +25,7 @@ class HomeNavbar extends Component{
     render(){
         return(
             <nav className="NavbarItems">
-                <h1 className="navLogo">LOGO</h1>
+                <h1 className="navLogo">TUNET</h1>
                 <div className="menu-icon" onClick={this.handleBarClick}>
                     
                     {this.state.clicked ? 
@@ -38,6 +40,11 @@ class HomeNavbar extends Component{
                         <a href={this.props.isArtist ? "artistHome" : "localHome"} className="nav-links">
                             <FaHome className="navLinkIcons"/>Home
                         </a>
+                    </li>
+                    <li>
+                        <Link to="/myEvents" className="nav-links" state={{isArtist:this.props.isArtist}}>
+                            <FaHistory className="navLinkIcons"/>{this.props.isArtist ? "Events" : "Events"}
+                        </Link>
                     </li>
                     <li>
                         <Link to="/aboutUs" className="nav-links" state={{isSignedIn:true, isArtist:this.props.isArtist}}>

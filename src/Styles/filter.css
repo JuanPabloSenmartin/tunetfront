@@ -1,13 +1,12 @@
 
 .homeFilter {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    /* display: flex; */
+    /* flex-direction: column; */
   }
   .homeFilter_panelList-wrap,
   .homeFilter_panel-wrap,
   .homeFilter_list-wrap {
-    overflow-y: auto;
+    /* overflow-y: auto; */
     overflow-x: hidden
     ;
   }
@@ -29,7 +28,7 @@
   .posts-wrap{
       width: 50%;
       margin-left: 10%;
-      overflow-y: hidden;
+      /* overflow-y: hidden; */
   }
 
   .labelFilter {

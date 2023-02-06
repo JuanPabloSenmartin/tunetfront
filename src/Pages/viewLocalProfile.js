@@ -4,21 +4,33 @@ import { useLocation } from 'react-router-dom'
 import {useMySystem} from "../mySystem";
 import HomeNavbar from "../Components/HomeNavbar";
 import Background from "../Components/Background";
+import {FaUserAlt} from 'react-icons/fa'
+import {FaMapMarkerAlt} from 'react-icons/fa'
+import {FaPhone} from 'react-icons/fa'
+import {FaPencilAlt} from 'react-icons/fa'
+import {FaRegStar} from 'react-icons/fa'
+import {FaTimes} from 'react-icons/fa'
+import Rating from '@mui/material/Rating';
+import InitialNavbar from "../Components/InitialNavbar";
 
 
 export const ViewLocalProfile = () => {
-    const location = useLocation()
-    const {mail} = location.state
-    const [userMail, setUserMail] = useState(mail)
-    const [locations, setLocation] = useState('')
+    const l = useLocation()
+    const data = l.state
+    const [email, setEmail] = useState('')
+    const [location, setLocation] = useState('')
     const [username, setUsername] = useState('')
     const [description, setDescription] = useState('')
-    const [pictureUrl, setPictureUrl] = useState('')
     const [profilePictureUrl, setProfilePictureUrl] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
-    const [rating, setRating] = useState('')
+    const [rating, setRating] = useState(0)
+    const [images, setImages] = useState([])
+    const [popped, setPopped] = useState(false)
+    const [poppedImage, setPoppedImage] = useState('')
     const [errorMsg, setErrorMsg] = useState(undefined)
     const mySystem = useMySystem();
+
+    const unkwnow = "(unknown)";
 
     useEffect(() => {
         fetchData()
@@ -26,69 +38,102 @@ export const ViewLocalProfile = () => {
 
     const fetchData = () => {
         //fetches all information from this user
-        mySystem.getProfileDataByMail(userMail, (info) => {
+        mySystem.getProfileDataByMail(data.mail, (info) => {
+            setEmail(info.email)
             setLocation(info.location)
             setUsername(info.username)
             setDescription(info.description)
-            setPictureUrl(info.pictureUrl)
-            setProfilePictureUrl(info.profilePictureUrl)
             setPhoneNumber(info.phoneNumber)
             setRating(info.rating)
+            
+            mySystem.getGalleryImages(data.mail,
+                (data) => setImages(data),
+                () => setErrorMsg('ERROR: CANNOT CONNECT WITH API') )
+            
+            
+            mySystem.getPicFromMail(data.mail,
+                (data) => setProfilePictureUrl(data),
+                () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))    
         }, () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))
+
+        
     }
 
+    const popImg = (img) => {
+        setPoppedImage(img);
+        setPopped(true)
+    }
 
     return (
         <div style={Background()}>
-            <HomeNavbar isArtist= {true}/>
+            {data.isSignedIn ? <HomeNavbar isArtist= {true}/> : <InitialNavbar />}
             <div className="space"/>
-            <br/>
-            <br/>
-            <div className="titleEditProf">
-                   <h1 className="profh1">{username}`s profile</h1>
-            </div>
-            <div className="profForm">
+
+            <div className="editProf-top">
+            <div className="editProf-image-div">
                 
-                <div className="profile-Pic">
-                    <div className="ite">
-                        <img src={profilePictureUrl} />
+                <div className="editProf-profPic-div">
+                    <img src={profilePictureUrl} className="editProf-profPic-image"/>
+                </div >
+                
+                
+            </div>
+
+            <div className="editProf-form-div">
+                
+                <div className="viewprofile-Settings">
+
+                    <div className="viewProf-info">
+                        <label className="profLabel"><FaUserAlt/> Username</label>
+                        {username != null ? username : unkwnow}
+                    </div>
+                    <br/>
+                    <div className="viewProf-info">
+                        <label className="profLabel"><FaMapMarkerAlt/> Location</label>
+                        {location != null ? location : unkwnow}
+                    </div>
+                    <br/>
+                    <div className="viewProf-info">
+                        <label className="profLabel"><FaPhone/> Phone number</label>
+                        {phoneNumber != null ? phoneNumber : unkwnow}
+                    </div>
+                    <br/>
+                    <div className="viewProf-info">
+                        <label className="DescriptionLabel"><FaPencilAlt/> Description</label>
+                        {description != null ? description : unkwnow}
+                    </div>
+                    <br/>
+                    <div className="viewProf-info">
+                        <label className="profLabel"><FaRegStar/> Rating</label>
+                        <Rating name="read-only" value={rating} readOnly />
+                        {rating == "0" || rating == null ? "No rating given yet" : ""}
                     </div>
                 </div>
 
-                <div className="profile-Settings">
-                    <div>
-                        <label className="profLabelView">Username:</label>
-                        <p className="resp">{username}</p>
-                    </div>
-                    <br/>
-                    <div>
-                    <label className="profLabelView">Location:</label>
-                        <p className="resp">{locations}</p>
-                    </div>
-                    <br/>
-                    <div>
-                        <label className="profLabelView">Phone number:</label>
-                        <p className="resp">{phoneNumber}</p>
-                    </div>
-                    <br/>
-                    <div>
-                        <label className="profLabelView">Description:</label>
-                        <p className="resp">{description}</p>
-                    </div>
-                    <div>
-                        <label className="profLabel">Rating</label>
-                        <p className="resp">{rating}</p>
-                    </div>
+                
+            
+            </div>
+            </div>
+            <hr className="editProf-hr"/>
+
+            <div className="imagesProfDiv">
+                    <h1 className="imagesh1">Image gallery</h1>
                     
-                </div>
+                    <div className="gallery">
+                        {images.map((item, index)=>{
+                            return(
+                                <div className="images-in-gallery" key={index} onClick={() => popImg(item)}>
+                                    <img src={item} style={{width: '100%'}}/>
+                                </div>
+                            )
+                        })}
+                    </div>
+            </div>
 
-                <div className="imagesProf">
-                    <h1 className="imagesView">Images</h1>
-                    <img src={pictureUrl} className="imgLocalProfView"/>
-                </div>
-
-                {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
-            </div> 
+            <div className={popped ? "popped-img open" : "popped-img"}>
+                <img src={poppedImage}/>
+                <FaTimes className="popped-img-closed-Icon" onClick={() => setPopped(false)}/>
+            </div>
         </div>
     )
 }

@@ -20,25 +20,16 @@ export const PostInArtistFeed = (props) => {
     const description = props.post.description;
     const date = props.post.date;
     const mail = props.post.localEmail;
-    const [pic, setPic] = useState('')
-    const navigate = useNavigate();
+    const pic = props.post.picture;
+    const distance = props.post.distance;
+    const genre = props.post.genre;
+    const rating = props.post.rating;
+    const [clicked, setClicked] = useState(false)
+    const [hovered, setHovered] = useState(false)
     const mySystem = useMySystem()
     const auth = useTokenManager()
     const token = auth.getToken();
-    const [errorMsg, setErrorMsg] = useState(undefined)
-    const [successMsg, setSuccessMsg] = useState(undefined)
-    const [submitButton, setSubmitButton] = useState(true)
-
     
-    useEffect(() => {
-        fetchProfPic();
-    }, [])
-
-    const fetchProfPic = () => {
-        mySystem.getPicFromMail(mail, 
-            (i) =>  setPic(i),
-            () => setErrorMsg('error in fetch picture'))
-    }
 
     const submitApplication = () => {
         mySystem.addArtistToPostList({
@@ -46,13 +37,24 @@ export const PostInArtistFeed = (props) => {
             postID: postID
         },
         () => {
-            setSuccessMsg('You have applied sucessfully')
-            setSubmitButton(false)
+            setClicked(true)
         },
-        () => setErrorMsg('ERROR'),
-        () => setErrorMsg('Already submited'))
+        
+        )
     }
-    
+    const unSubmitApplication = () => {
+        mySystem.deleteArtistFromPostList({
+            token: token,
+            postID: postID
+        },
+        () => {
+            
+            setClicked(false)
+        },
+        
+        )
+    }
+
     return(
             <div className="postInFeed">
                 <div className="left-of-post">
@@ -63,12 +65,12 @@ export const PostInArtistFeed = (props) => {
                         <img className="profPicInPost" src={pic} />
                     </div>
                     <div className="view-profile-div-post">
-                            <Link to="/viewLocalProfile" state={{ mail: mail} } >
+                            <Link to="/viewLocalProfile" state={{ mail: mail, isSignedIn: props.isSignedIn} } >
                                 <button className="view-profile-button-post">
                                     View Profile
                                 </button>
                             </Link>
-                        </div>
+                    </div>
                 </div>
                 
                 <div className="right-of-post">
@@ -86,21 +88,21 @@ export const PostInArtistFeed = (props) => {
                         </div>
                     </div>
                     <div className="post-detail-info">
-                        <label><FaMusic/> Gendre</label>
+                        <label><FaMusic/> Genre</label>
                         <div className="post-info-response">
-                            GENDRES
+                            {genre != null && genre != "" ? genre : "Any"}
                         </div>
                     </div>
                     <div className="post-detail-info">
                         <label><FaMapMarkedAlt/> Km from you</label>
                         <div className="post-info-response">
-                            10 km
+                            {distance != -1 ? distance : "undifined"}
                         </div>
                     </div>
                     <div className="post-detail-info">
                         <label><FaRegStar/> Rating</label>
                         <div className="post-info-response">
-                            <Rating name="read-only" value={3} readOnly />
+                            <Rating name="read-only" value={rating} readOnly />
                         </div>
                     </div>
                     <div className="post-decription-info">
@@ -113,13 +115,8 @@ export const PostInArtistFeed = (props) => {
 
                     
                     <div className="submit-app-div-post">
-                         {submitButton && <button className="submitButton-post" onClick={submitApplication}>Submit my application</button>}
+                         {props.isSignedIn && (!clicked ? <button className="submitButton-post" onClick={submitApplication}>Submit my application</button> : <button className="submitButton-post-clicked" onMouseLeave={() => setHovered(false)} onMouseEnter={() => setHovered(true)} onClick={unSubmitApplication}>{hovered ? "Unsubmit application" : "Application submitted"}</button>)}
                     </div>
-                    
-                    
-                    {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
-                    {successMsg && <div className="successArt" role="alert">{successMsg}</div>}
-                    
                     
                 </div>
             </div>

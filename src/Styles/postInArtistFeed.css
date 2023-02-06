@@ -30,6 +30,7 @@
     width: auto;
     height:auto;
     max-height: 100%;
+    max-width: 100%;
 }
 .imgDivPic{
     height: 70%;
@@ -90,6 +91,33 @@
     -webkit-box-shadow: none; 
     -moz-box-shadow: none; 
     box-shadow: none;
+    cursor: pointer;
+  }
+  .submitButton-post-clicked{
+    margin-left: 20%;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 6px 25px 0px 20px;
+    text-decoration: none;
+    width: 250px; height: 40px; 
+    -webkit-border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    border-radius: 5px; 
+    background-color: green; 
+    -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+    -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+    box-shadow: 0 3px rgba(58,87,175,.75);
+    transition: all 0.1s linear 0s; 
+    position: relative;
+  }
+  .submitButton-post-clicked:hover {
+    top: 3px;
+    background-color:red;
+    -webkit-box-shadow: none; 
+    -moz-box-shadow: none; 
+    box-shadow: none;
+    cursor: pointer;
   }
 
   .view-profile-button-post {
@@ -118,5 +146,7 @@
     -webkit-box-shadow: none; 
     -moz-box-shadow: none; 
     box-shadow: none;
+    cursor: pointer;
+
   }
   
