@@ -8,6 +8,7 @@ import InitialNavbar from "../Components/InitialNavbar";
 import {FaEnvelope} from 'react-icons/fa'
 import {FaKey} from 'react-icons/fa'
 import Background from "../Components/Background";
+import {useLocation} from 'react-router-dom';
 
 
 
@@ -20,6 +21,7 @@ export const Login = () => {
     const navigate = useNavigate();
     const mySystem = useMySystem();
     const myTokenManager = useTokenManager();
+    const location = useLocation();
 
 
     const handleSubmit = async e => {
@@ -66,7 +68,7 @@ export const Login = () => {
     
 
     return(
-        <div style={Background()} className="login-styles">
+        <div style={Background()} >
             
             <InitialNavbar/>
             <div className="space"/>
@@ -84,6 +86,7 @@ export const Login = () => {
                     <div className="login-label-input">
                     <label id="icon" ><FaEnvelope/></label>
                     <input type="text"
+                            className="input-login"
                             placeholder="Mail"
                             value={mail}
                             name="email"
@@ -91,6 +94,7 @@ export const Login = () => {
                     </div>
                     <label id="icon" ><FaKey/></label>
                     <input type="password"
+                            className="input-password-login"
                             id="floatingPassword"
                             placeholder="Password"
                             name="password"
@@ -100,6 +104,7 @@ export const Login = () => {
                         <p className="login-p">Not registered yet? <Link to="/register" style={{paddingLeft: 13, color: 'inherit',  backgroundColor: 'inherit'}}>Register here</Link></p>
                         <button className="submitButton" type="submit">Sign in</button>
                     </div>
+                    {location.state != null && <div className="successArt" role="alert">You have registered in Tunet!</div>}
                     {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                 </form> 
             </div>

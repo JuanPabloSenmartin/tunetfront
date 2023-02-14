@@ -38,8 +38,16 @@ export const PostInArtistFeed = (props) => {
         },
         () => {
             setClicked(true)
+            mySystem.sendMail({
+                emailTo:mail,
+                type:"postulated",
+                token:token,
+                postTitle:title
+            },
+            () => {},
+            () => {})
         },
-        
+        () => {}
         )
     }
     const unSubmitApplication = () => {
@@ -65,7 +73,7 @@ export const PostInArtistFeed = (props) => {
                         <img className="profPicInPost" src={pic} />
                     </div>
                     <div className="view-profile-div-post">
-                            <Link to="/viewLocalProfile" state={{ mail: mail, isSignedIn: props.isSignedIn} } >
+                            <Link to={"/viewLocalProfile/" + mail} state={{isSignedIn: props.isSignedIn} } >
                                 <button className="view-profile-button-post">
                                     View Profile
                                 </button>

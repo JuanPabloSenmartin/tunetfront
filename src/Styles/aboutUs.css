@@ -1,6 +1,26 @@
 .space{
     align-self: center;
 }
-.body{
-
+.about-us-img{
+    width: 100%;
+}
+.about-us-left{
+    width: 60%;
+    float: left;
+}
+.about-us-right{
+    width: 40%;
+    float: right;
+}
+.about-us-title{
+    font-size: 350%;
+    text-align: center;
+}
+.about-us-body{
+    font-size: 230%;
+    text-align: center;
+}
+.about-us-left-mid-div{
+    margin:auto;
+    width: 60%;
 }

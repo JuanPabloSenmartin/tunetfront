@@ -6,9 +6,6 @@ import {useTokenManager} from "../tokenManager"
 import HomeNavbar from "../Components/HomeNavbar";
 import Background from "../Components/Background";
 import FilterPanel from "../Components/filter/filterPanel";
-    
-
-
 
 export const ArtistHome = () => {
     const auth = useTokenManager()
@@ -17,26 +14,39 @@ export const ArtistHome = () => {
     const [posts, setPosts] = useState([])
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [selectedRating, setSelectedRating] = useState(null);
-    const [selectedRange, setSelectedRange] = useState([0, 2000]);
+    const [selectedRange, setSelectedRange] = useState(null);
+    const [x, setX] = useState(false)
     const [genre, setGenre] = useState([
     { id: 1, checked: true, label: 'Any' },    
     { id: 2, checked: false, label: 'Rock' },
     { id: 3, checked: false, label: 'Pop' },
     { id: 4, checked: false, label: 'Jazz' },
+    { id: 5, checked: false, label: 'Blues' },
+    { id: 6, checked: false, label: 'Classical' }
+    ]);
+    const [date, setDate] = useState([
+        {
+          startDate: null,
+          endDate: null,
+          key: 'selection'
+        }
     ]);
 
     useEffect(() => {
         fetchPostsInFeed({
             token: token,
             rating: selectedRating,
-            range: selectedRange,
-            genres: getCheckedGenres()
+            maxDistance: selectedRange,
+            genres: getCheckedGenres(),
+            dateRange: getDates()
         })
-    }, [selectedRating, genre, selectedRange])
+    }, [selectedRating, genre, x, date])
 
 
-    const handleSelectRating = (event, value) =>
-        !value ? null : setSelectedRating(value);
+    const handleSelectRating = (event, value) => {
+        if(event.target.value == selectedRating) setSelectedRating(null)
+        else setSelectedRating(event.target.value)
+    }
 
     const handleChangeChecked = (id) => {
         const genreStateList = genre;
@@ -46,10 +56,16 @@ export const ArtistHome = () => {
         setGenre(changeCheckedGenre);
       };
 
-    const handleChangeRange = (event, value) => {
-        setSelectedRange(value);
+    const handleChangeRange = (event) => {
+        setSelectedRange(event.target.value);
     };
-
+    const handleChangeDate = (value) => {
+        setDate(value);
+    };
+    
+    const getDates = () => {
+        return [date[0].startDate, date[0].endDate];
+    }
     const getCheckedGenres = () => {
         const arr = [];
         genre.map((item) => {
@@ -58,6 +74,9 @@ export const ArtistHome = () => {
             }
         })
         return arr;
+    }
+    const refresh = () => {
+        setX(!x)
     }
    
     const fetchPostsInFeed = (data) => {
@@ -70,7 +89,9 @@ export const ArtistHome = () => {
     }  
     
     return (
-        <div style={Background()} className="homeFilter">
+        <div 
+        style={Background()}
+         className="homeFilter">
             <HomeNavbar isArtist= {true}/>
             <div className="space"/>
             
@@ -85,6 +106,9 @@ export const ArtistHome = () => {
                         genre={genre}
                         changeChecked={handleChangeChecked}
                         changeRange={handleChangeRange}
+                        selectedDate={date}
+                        changeDate={handleChangeDate}
+                        refresh={refresh}
                     />
                 </div>
                 <div className='posts-wrap'>

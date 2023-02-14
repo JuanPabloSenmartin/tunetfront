@@ -516,6 +516,108 @@ const MySystem = {
                   errorCallback()
               }
           })
+      },
+
+      sendMail: async (data, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/sendMail`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
+      },
+
+      getNotifications: async (token, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/getNotifications`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(token)
+          }).then(resp => {
+              if (resp.status === 201) {
+                  resp.json().then(body => okCallback(body))
+              } else {
+                  errorCallback()
+              }
+          })
+      },
+
+      deleteNotification: async (notificationId, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/deleteNotification`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(notificationId)
+          }).then(resp => {
+            if (resp.status === 201) {
+                okCallback()
+            } else {
+                errorCallback()
+            }
+          })
+      },
+
+      seeNotifications: async (token, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/seeNotifications`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(token)
+          }).then(resp => {
+            if (resp.status === 201) {
+                okCallback()
+            } else {
+                errorCallback()
+            }
+          })
+      },
+
+      deletePost: async (id, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/deletePost`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(id)
+          }).then(resp => {
+            if (resp.status === 201) {
+                okCallback()
+            } else {
+                errorCallback()
+            }
+          })
+      },
+
+      rejectAcceptedArtist: async (id, okCallback, errorCallback) => {
+          fetch(`${restApiEndpoint}/rejectAcceptedArtist`, {
+              method: 'POST',
+              
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(id)
+          }).then(resp => {
+            if (resp.status === 201) {
+                okCallback()
+            } else {
+                errorCallback()
+            }
+          })
       }
 }
 

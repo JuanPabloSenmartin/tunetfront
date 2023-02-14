@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../Styles/viewArtistProfile.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import {useMySystem} from "../mySystem";
 import ReactAudioPlayer from 'react-audio-player';
 import HomeNavbar from "../Components/HomeNavbar";
@@ -17,10 +17,12 @@ import InitialNavbar from "../Components/InitialNavbar";
 
 
 export const ViewArtistProfile = () => {
+    const params = useParams()
+    const myMail = params.userMail
     const l = useLocation()
     const data = l.state
     
-
+    const [isSignedIn, setIsSignedIn] = useState(false)
     const [username, setUsername] = useState('')
     const [description, setDescription] = useState('')
     const [profilePictureUrl, setProfilePictureUrl] = useState('')
@@ -37,27 +39,28 @@ export const ViewArtistProfile = () => {
     const unkwnow = "(unknown)";
 
     useEffect(() => {
+        if(data != null && data.isSignedIn) setIsSignedIn(true)
         fetchData();
     }, [])
 
     const fetchData = () => {
         //fetches all information from this user
-        mySystem.getProfileDataByMail(data.mail, (info) => {
+        mySystem.getProfileDataByMail(myMail, (info) => {
             setUsername(info.username)
             setDescription(info.description)
             setLocation(info.location)
             setPhoneNumber(info.phoneNumber)
             setRating(info.rating)
 
-            mySystem.getGalleryImages(data.mail,
+            mySystem.getGalleryImages(myMail,
                 (dataa) => setImages(dataa),
                 () => setErrorMsg('ERROR: CANNOT CONNECT WITH API') )
             
-            mySystem.getSongs(data.mail,
+            mySystem.getSongs(myMail,
                 (dataa) => setSongs(dataa),
                 () => setErrorMsg('ERROR: CANNOT CONNECT WITH API') )
             
-            mySystem.getPicFromMail(data.mail,
+            mySystem.getPicFromMail(myMail,
                 (dataa) => setProfilePictureUrl(dataa),
                 () => setErrorMsg('ERROR: CANNOT CONNECT WITH API')) 
             
@@ -73,7 +76,7 @@ export const ViewArtistProfile = () => {
     return (
         
         <div style={Background()}>
-            {data.isSignedIn ? <HomeNavbar isArtist= {false}/> : <InitialNavbar />}
+            {isSignedIn ? <HomeNavbar isArtist= {false}/> : <InitialNavbar />}
             <div className="space"/>
 
             <div className="editProf-top">

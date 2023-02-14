@@ -5,6 +5,8 @@ import '../Styles/aboutUs.css'
 import {useTokenManager} from "../tokenManager"
 import { useLocation } from 'react-router-dom'
 import Background from "../Components/Background";
+import img1 from "../Images/playingGuitar.png";
+import img2 from "../Images/playingPiano.png";
 
 
 
@@ -17,12 +19,29 @@ export const AboutUs = () => {
 
 
     return (
-        <div style={Background()}>
+        <div 
+        style={Background()}
+        >
             
             {data.isSignedIn ? <HomeNavbar isArtist= {data.isArtist}/> : <InitialNavbar/>}
             <div className="space"/>
-            <h1 className="title">ABOUT US</h1>
-            <h2 className="body">Tunet is a website for locals to search for potential artists and bands</h2>
+            <div className="about-us-left">
+                <div className="about-us-left-mid-div">
+                    <h1 className="about-us-title">ABOUT TUNET</h1>
+                    <br/>
+                    <br/>
+                    <h2 className="about-us-body">Tunet is a website that connects artists and bands with businesses.</h2>
+                    <br/>
+                    <h2 className="about-us-body">Our main objective is to simplify the connectivity for both sides and therefore increase the professional network.</h2>
+                    <br/>
+                    <h2 className="about-us-body">Tunet was founded in 2021 by Juan Pablo Senmartin and Julian Recio</h2>
+                </div>
+            </div>
+            <div className="about-us-right">
+                <img className="about-us-img" src={img1}/>
+                <img className="about-us-img" src={img2}/>
+            </div>
+            
             
         </div>
     )

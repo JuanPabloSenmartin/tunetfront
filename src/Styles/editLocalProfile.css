@@ -84,9 +84,29 @@
     margin-left: 10%;
 }
 .editProf-form-div{
-    width: 50%;
+    width: 70%;
     height: 100%;
-    float: left;
+    float: right;
+}
+.editProf-info{
+  height: 15%;
+  width: 100%;
+  float: left;
+}
+.input-editProf{
+  width: 200px; 
+  height: 35px; 
+  -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
+  -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px; 
+  border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
+  background-color: #fff; 
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+  box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+  border: solid 1px #cbc9c9;
+  margin-left: -5px;
+  margin-top: 13px; 
+  padding-left: 10px;
 }
 .profForm{
   width: 100%;
@@ -116,10 +136,8 @@
   -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
   box-shadow: 0 3px rgba(58,87,175,.75);
   transition: all 0.1s linear 0s; 
-  /* position: relative; */
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 10%;
+  position: relative;
+  margin-top: 100px;
 }
 
 .submitButtonEdit:hover {
@@ -136,7 +154,7 @@
   height: 100%;
 }
 .editProf-top{
-  height: 30%;
+  height: 400px;
   width: 100%;
 }
 .imagesProfDiv{

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import '../Styles/chat.css'
 import {useMySystem} from "../mySystem";
+import {FaTelegramPlane} from 'react-icons/fa'
+
 
 
 export const ChatComponent = (props) => {
@@ -126,8 +128,7 @@ export const ChatComponent = (props) => {
 		</ul>
 		<footer className="chat-footer">
 			<textarea placeholder="Type your message" onChange={handleMessageChange} value={message}></textarea>
-			
-			<button onClick={sendMessage}>Send</button>
+			<FaTelegramPlane className="send-icon-chat" onClick={sendMessage}/>
 		</footer>
 	
 </div>

@@ -27,3 +27,60 @@
     border-radius: 10px;
     position: relative;
 }
+.localpost-profPic-div{
+    height: 100%;
+    width: 5%;
+    float: left;
+}
+.localpost-artistPart-left{
+    float: left;
+    height: 100%;
+    width: 15%;
+    /* font-size: 170%; */
+    margin-left: 10px;
+}
+.localpost-artistPart-middle{
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+.localpost-artistPart-right{
+    float: right;
+    height: 100%;
+    width: 30%;
+}
+.localpost-profPic{
+    width: auto;
+    height:auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+.localPost-artistPart{
+    width: 100%;
+    height: 50px;
+    font-size: 170%;
+    margin-bottom: 10px;
+}
+.filter-by-date-button{
+    font-size: 1.3rem;
+    text-align: center;
+  color: white;
+  padding: 6px 25px 0px 25px;
+  text-decoration: none; 
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: #3a57af; 
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s; 
+}
+.filter-by-date-button:hover{
+    -webkit-box-shadow: none; 
+    -moz-box-shadow: none; 
+    box-shadow: none;
+    cursor: pointer;
+    background-color:#8860D0;
+}

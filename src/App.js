@@ -1,4 +1,5 @@
 import React from "react"
+// import './Styles/app.css'
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import {Login} from './Pages/login'
 import {Register} from './Pages/register'
@@ -19,8 +20,8 @@ import { MyEvents } from "./Pages/myEvents"
 
 
 const App = () => (
-    
-        <Routes >
+        // <div className="App">
+            <Routes >
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
@@ -37,7 +38,7 @@ const App = () => (
                 </RequireAuth>
             } />
 
-            <Route path="viewArtistProfile" element={
+            <Route path="viewArtistProfile/:userMail" element={
                 <ViewArtistProfile/>
             } />
             <Route path="editArtistProfile" element={
@@ -45,7 +46,7 @@ const App = () => (
                     <EditArtistProfile/>
                 </RequireAuth>
             } />
-            <Route path="viewLocalProfile" element={
+            <Route path="viewLocalProfile/:userMail" element={
                 <ViewLocalProfile/>
             } />
             <Route path="editLocalProfile" element={
@@ -69,6 +70,8 @@ const App = () => (
                 </RequireAuth>
             } />
         </Routes>
+        // </div>
+        
     
 )
 

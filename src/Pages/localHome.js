@@ -11,11 +11,13 @@ import {useNavigate} from "react-router";
 
 
 
+
 export const LocalHome = () => {
     const mySystem = useMySystem()
     const auth = useTokenManager()
     const token = auth.getToken()
     const navigate = useNavigate();
+    const [x, setX] = useState(false)
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [posts, setPosts] = useState([])
     const [selectedPost, setSelectedPost] = useState(undefined)
@@ -23,7 +25,7 @@ export const LocalHome = () => {
 
     useEffect(() => {
         fetchPosts()
-    }, [])
+    }, [x])
     
     
 
@@ -34,6 +36,7 @@ export const LocalHome = () => {
             },
               () => setErrorMsg('ERROR'));
     }
+
     const acceptArtist = (postId, artistListId) => {
         mySystem.acceptArtistInPost({
             token:token,
@@ -42,6 +45,21 @@ export const LocalHome = () => {
         },
         () => {},
         ()=> {})
+    }
+    const sendEmail = (artistEmail, title) => {
+        mySystem.sendMail({
+            emailTo:artistEmail,
+            type:"accepted",
+            token:token,
+            postTitle:title
+        },
+        () => {},
+        () => {})
+    }
+    const deletePost = (id) => {
+        mySystem.deletePost(id,
+        () => {setX(!x)},
+        () => {})
     }
 
 
@@ -61,7 +79,7 @@ export const LocalHome = () => {
                 {posts.map((info, index) => {
                     return(
                         <div>
-                            <Post setSelected={setSelectedPost} selected={selectedPost} key={index} post={info} acceptArtist={acceptArtist} />
+                            <Post setSelected={setSelectedPost} selected={selectedPost} key={index} post={info} acceptArtist={acceptArtist} sendEmail={sendEmail} deletePost={deletePost} />
                         </div>
                     )
                 })}

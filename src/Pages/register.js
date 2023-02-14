@@ -16,7 +16,6 @@ export const Register = () => {
     const [password, setPassword] = useState('')
     const [isArtist, setIsArtist] = useState('')
     const [errorMsg, setErrorMsg] = useState(undefined)
-    const [isRegistered, setIsRegistered] = useState(false)
     const [uncompleteFormMsg, setUncompleteFormMsg] = useState(undefined)
     const navigate = useNavigate();
     const mySystem = useMySystem();
@@ -44,8 +43,7 @@ export const Register = () => {
         mySystem.register(
             user,
             () => {
-                setIsRegistered(true)
-                navigate("/login")
+                navigate("/login",{state:{fromRegister:true}})
             },
             () => {
                 setErrorMsg('User already exists')
@@ -110,18 +108,21 @@ export const Register = () => {
                     <br/>
                     <label id="icon" htmlFor="name"><FaEnvelope/></label>
                     <input type="text"
+                            className="input-login"
                             placeholder="Mail"
                             value={mail}
                             name="email"
                             onChange={mailChange}/>
                     <label id="icon" htmlFor="name"><FaUserAlt/></label>
                     <input type="text"
+                            className="input-login"
                             placeholder="Username"
                             value={username}
                             name="username"
                             onChange={usernameChange}/>
                     <label id="icon" htmlFor="password"><FaKey/></label>
                     <input type="password"
+                            className="input-password-login"
                             id="floatingPassword"
                             placeholder="Password"
                             name="password"
@@ -132,7 +133,6 @@ export const Register = () => {
                         <button className="submitButton" type="submit">Sign Up</button>
                     </div>
 
-                    {isRegistered && <div className="successArt" role="alert">You have successfully registered in Tunet!</div>}
                     {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                     {uncompleteFormMsg && <div className="alertWarning" role="alert">{uncompleteFormMsg}</div>}
                 </form>

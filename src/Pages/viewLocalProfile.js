@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../Styles/viewLocalProfile.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import {useMySystem} from "../mySystem";
 import HomeNavbar from "../Components/HomeNavbar";
 import Background from "../Components/Background";
@@ -15,8 +15,11 @@ import InitialNavbar from "../Components/InitialNavbar";
 
 
 export const ViewLocalProfile = () => {
+    const params = useParams()
+    const myMail = params.userMail
     const l = useLocation()
     const data = l.state
+    const [isSignedIn, setIsSignedIn] = useState(false)
     const [email, setEmail] = useState('')
     const [location, setLocation] = useState('')
     const [username, setUsername] = useState('')
@@ -33,12 +36,13 @@ export const ViewLocalProfile = () => {
     const unkwnow = "(unknown)";
 
     useEffect(() => {
+        if(data != null && data.isSignedIn) setIsSignedIn(true)
         fetchData()
     }, [])
 
     const fetchData = () => {
         //fetches all information from this user
-        mySystem.getProfileDataByMail(data.mail, (info) => {
+        mySystem.getProfileDataByMail(myMail, (info) => {
             setEmail(info.email)
             setLocation(info.location)
             setUsername(info.username)
@@ -46,12 +50,12 @@ export const ViewLocalProfile = () => {
             setPhoneNumber(info.phoneNumber)
             setRating(info.rating)
             
-            mySystem.getGalleryImages(data.mail,
+            mySystem.getGalleryImages(myMail,
                 (data) => setImages(data),
                 () => setErrorMsg('ERROR: CANNOT CONNECT WITH API') )
             
             
-            mySystem.getPicFromMail(data.mail,
+            mySystem.getPicFromMail(myMail,
                 (data) => setProfilePictureUrl(data),
                 () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))    
         }, () => setErrorMsg('ERROR: CANNOT CONNECT WITH API'))
@@ -66,7 +70,7 @@ export const ViewLocalProfile = () => {
 
     return (
         <div style={Background()}>
-            {data.isSignedIn ? <HomeNavbar isArtist= {true}/> : <InitialNavbar />}
+            {isSignedIn ? <HomeNavbar isArtist= {true}/> : <InitialNavbar />}
             <div className="space"/>
 
             <div className="editProf-top">

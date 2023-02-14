@@ -57,6 +57,7 @@ export const GenericPost = (props) => {
                                     <div className="w100-h85"/>
                                     <div className="artistEvents-buton-post-div">
                                         {props.type != "previous" && <button className="artistEvents-cancelPostulation-buton" onClick={()=> props.cancelPostulation(post.id)}>{props.type == "postulated" ? "Cancel postulation" : "Cancel event"}</button>}
+                                        {props.type == "previous" && newRating == 0 && "Rate from your expierience: " }
                                         {props.type == "previous" && newRating == 0 && <Rating name="simple-controlled" value={newRating} onChange={(event, newValue) => {
                                             setNewRating(newValue);
                                             props.rateLocal(post.localEmail, newValue);
@@ -70,14 +71,13 @@ export const GenericPost = (props) => {
                                         <img className="profPicInPost" src={post.picture} />
                                     </div>
                                     <div className="view-profile-div-post">
-                                        {props.type == "accepted" &&
+                                        {(props.type == "accepted" || props.type == "previous") &&
                                             <Link to="/chat" state={{emailHIM: post.localEmail, emailME: post.artistEmail, isMEartist: true, fromPost: true}} >
                                                 <button className="view-profile-button-post">
                                                     Chat
                                                 </button>
                                             </Link>}
-                                            
-                                            <Link to="/viewLocalProfile" state={{ mail: post.localEmail, isSignedIn: true} } >
+                                            <Link to={"/viewLocalProfile/" + post.localEmail} state={{ isSignedIn: true} } >
                                             <button className="view-profile-button-post">
                                                 View Profile
                                             </button>

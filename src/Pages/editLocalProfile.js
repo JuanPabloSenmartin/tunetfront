@@ -167,11 +167,12 @@ export const EditLocalProfile = () => {
             <div className="editProf-form-div">
                 <form onSubmit={handleSubmit} className="profForm">
                 <div className="profile-Settings">
-
+                <h1 className="imagesh1">Profile settings</h1>
                     <div className="editProf-info">
-                        <h1 className="imagesh1">Profile settings</h1>
+                        
                         <label className="profLabel"><FaUserAlt/> Username</label>
                         <input type="text"
+                            className="input-editProf"
                             placeholder="Username"
                             value={username}
                             name="username"
@@ -181,6 +182,7 @@ export const EditLocalProfile = () => {
                     <div className="editProf-info">
                         <label className="profLabel"><FaMapMarkerAlt/> Location</label>
                         <input type="text"
+                                className="input-editProf"
                                 placeholder="Location"
                                 value={location}
                                 name="location"
@@ -189,7 +191,9 @@ export const EditLocalProfile = () => {
                     <br/>
                     <div className="editProf-info">
                         <label className="profLabel"><FaPhone/> Phone number</label>
-                        <input type="text"
+                        <input 
+                            className="input-editProf"
+                            type="text"
                             placeholder="Phone number"
                             value={phoneNumber}
                             name="phoneNumber"

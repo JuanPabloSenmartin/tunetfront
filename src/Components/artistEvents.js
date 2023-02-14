@@ -5,10 +5,14 @@ import {FaSortUp} from 'react-icons/fa'
 import {useMySystem} from "../mySystem";
 import {useTokenManager} from "../tokenManager"
 import { GenericPost } from "./postTypes/genericPost";
+import { MyDateRangePicker } from "./filter/dateRangePicker";
+import {FaChevronCircleRight} from 'react-icons/fa'
+import {FaFilter} from 'react-icons/fa'
 
 export const ArtistEvents = (props) => {
 
     const [selectedPost, setSelectedPost] = useState(undefined)
+    const [filterOpen, setFilteredOpen] = useState(false)
     const mySystem = useMySystem()
     const auth = useTokenManager()
     const token = auth.getToken();
@@ -48,6 +52,16 @@ export const ArtistEvents = (props) => {
             </div>
 
             <div className="artistEvents-body">
+                <button className="filter-by-date-button" onClick={() => setFilteredOpen(!filterOpen)}><FaFilter/>Filter by date</button>
+                {filterOpen && 
+                <div>
+                    <MyDateRangePicker 
+                    selectedDate={props.date}
+                    changeDate={props.setDate}
+                    />
+                    <FaChevronCircleRight className="max-distance-enter-icon" onClick={() => props.refresh()}/>
+                </div> 
+                }
                 {props.posts.map((post, index)=> {
                     return(
                         <div key={index}>
@@ -62,10 +76,6 @@ export const ArtistEvents = (props) => {
                     )
                 })}
             </div>
-
-
-
-            
         </div>
     )
 }

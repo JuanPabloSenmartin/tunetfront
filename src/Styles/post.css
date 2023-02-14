@@ -1,1 +1,117 @@
+.localpost-h1{
+    text-align: center;
+}
+.localpost-h1-div{
+    height: 50px;
+    width: 100%;
+    margin-top: 100px;
+}
+.localPost-p{
+    font-size: 170%;
+    margin-left: 10px;
+}
+.local-post-title-div{
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    border: 3px outset #000;
+}
+.local-post-div{
+    width: 60%;
+    margin:auto;
+    margin-top: 50px;
+}
+.local-post-inside-div{
+    border: 3px outset #000;
+    width: 100%;
+}
+.local-post-inside-info{
+    width: 100%;
+    height: 150px;
+}
+.local-post-inside-info-left{
+    height: 100%;
+    width: 70%;
+    float: left;
+}
+.local-post-inside-info-right{
+    height: 100%;
+    width: 30%;
+    float: right;
+}
+.local-post-artistList-ul{
+    list-style: none;
+    text-align: start;
+    text-decoration: none;
+    font-size: 1.3rem;
+    margin-top: 120px;
+}
+.local-post-artistList-li{
+    margin-top: 60px;
+    width: 100%;
+    height: 60px;
+}
+.local-post-artistList-ul-button, .local-post-artistList-ul-button-accept, .local-post-button-delete, .local-post-reject-button{
+  margin-left: 15px;
+  text-align: center;
+  color: white;
+  padding: 6px 25px 0px 25px;
+  text-decoration: none; 
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: #3a57af; 
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s; 
+  position: relative;
+}
+.local-post-button-delete{
+    width: 200px; height: 50px;
+    font-size: 22px;
+    margin-left: 20%;
+    margin-top: 7%;
+}
+.local-post-artistList-ul-button-accept{
+    width: 200px; height: 50px;
+    font-size: 22px;
+    margin-left: 32%;
+}
+.local-post-reject-button{
+    width: 200px; height: 50px;
+    font-size: 22px;
+    margin-left: 50%;
+    margin-top: -10px;
+}
+.local-post-artistList-ul-button{
+    font-size: 17px;
+}
+.local-post-artistList-li-right{
+    width: 60%;
+    float: right;
+    height: 100%;
+}
+.local-post-artistList-li-left{
+    width: 40%;
+    float: left;
+    height: 100%;
+}
+
+.local-post-artistList-ul-button:hover, .local-post-artistList-ul-button-accept:hover, .local-post-button-delete:hover, .local-post-reject-button:hover {
+    top: 3px;
+    -webkit-box-shadow: none; 
+    -moz-box-shadow: none; 
+    box-shadow: none;
+    cursor: pointer;
+}
+.local-post-artistList-ul-button:hover{
+    background-color:#8860D0;
+}
+.local-post-artistList-ul-button-accept:hover{
+    background-color:green;
+}
+.local-post-button-delete:hover, .local-post-reject-button:hover{
+    background-color:red;
+}
 

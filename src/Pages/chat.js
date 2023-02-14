@@ -75,34 +75,27 @@ export const Chat = () => {
             <div className="chat-container">
 	            <aside className="chat-aside">
                     <div className="chats-h">
-                        <div className="chat-icon-title-div">
-                            <FaRocketchat className="chat-icon-title"/>
-                        </div>
-                        <div className="chats-title-div">
-                            <h2 className="chats-title">Chats</h2>
-                        </div>
-                        
+                        <h2 className="chats-title">{<FaRocketchat/>}     Chats</h2>
                     </div>
-                    <hr></hr>
+                    
 		            <ul className="chat-ul">
-                        {data.fromPost ? 
-                            <li onClick={() => handleClick(dataOfSpecificHIM)} key={data.emailHIM} className="chat-li">
+                        {data.fromPost &&
+                            <li onClick={() => handleClick(dataOfSpecificHIM)} key={data.emailHIM} className={dataOfSpecificHIM.id == selectedUserChat.id ? "chat-li-hovered" : "chat-li"}>
                                 <div className="img-li-chat-div">
-                                    <img src={data.profPicHIM} className="chat-img-li"/>
+                                    <img src={dataOfSpecificHIM.profPicHIM} className="chat-img-li"/>
                                 </div>
                                 <div className="chat-li-h2-div">
-                                    <h2 className="chat-li-h2">{data.usernameHIM}</h2>
+                                    <h2 className="chat-li-h2">{dataOfSpecificHIM.usernameHIM}</h2>
                                 </div>
-                                
                             </li> 
-                        : ''}
+                        }
 
                     
                         {usersData.map((info) => {
                             if(info.emailHIM == data.emailHIM){}
                             else{
                                 return(
-                                <li onClick={() => handleClick(info)} key={info.emailHIM} className="chat-li">
+                                <li onClick={() => handleClick(info)} key={info.emailHIM} className={info.id == selectedUserChat.id ? "chat-li-hovered" : "chat-li"}>
                                     <div className="img-li-chat-div">
                                         <img src={info.profPicHIM} alt="" className="chat-img-li"/>
                                     </div>

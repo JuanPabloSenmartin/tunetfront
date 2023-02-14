@@ -9,9 +9,6 @@
   margin-left: 18px;
 }
 
-.login-style{
-  box-sizing:border-box;
-}
 
 .testbox-login {
   margin: 20px auto;
@@ -42,8 +39,7 @@ hr{
   color: #8860D0;
   opacity: 0.3;
 }
-
-input[type=text],input[type=password]{
+.input-login , .input-password-login{
   width: 200px; 
   height: 35px; 
   -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
@@ -59,9 +55,6 @@ input[type=text],input[type=password]{
   padding-left: 10px;
 }
 
-input[type=password]{
-  margin-bottom: 25px;
-}
 
 .bottom-text{
    padding-top: 80px;

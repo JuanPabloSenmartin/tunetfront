@@ -26,9 +26,9 @@ class InitialNavbar extends Component{
                 </div>
                 <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
                     <li>
-                        <a href="discover" className="nav-links">
+                        <Link to="/discover" className="nav-links">
                             <FaCompass className="navLinkIcons"/>Discover
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <Link to="/aboutUs" className="nav-links" state={{isSignedIn:false}}>
@@ -36,9 +36,9 @@ class InitialNavbar extends Component{
                         </Link>
                     </li>
                     <li>
-                        <a href="login" className="nav-links-signin-btn">
+                        <Link to="/login" className="nav-links-signin-btn">
                             Sign in
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>

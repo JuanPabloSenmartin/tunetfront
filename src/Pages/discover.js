@@ -14,7 +14,8 @@ export const Discover = () => {
     const [posts, setPosts] = useState([])
     const [errorMsg, setErrorMsg] = useState(undefined)
     const [selectedRating, setSelectedRating] = useState(null);
-    const [selectedRange, setSelectedRange] = useState([0, 2000]);
+    const [selectedRange, setSelectedRange] = useState(null);
+    const [x, setX] = useState(false)
     const [genre, setGenre] = useState([
     { id: 1, checked: true, label: 'Any' },    
     { id: 2, checked: false, label: 'Rock' },
@@ -22,6 +23,13 @@ export const Discover = () => {
     { id: 4, checked: false, label: 'Jazz' },
     { id: 5, checked: false, label: 'Blues' },
     { id: 6, checked: false, label: 'Classical' },
+    ]);
+    const [date, setDate] = useState([
+        {
+          startDate: null,
+          endDate: null,
+          key: 'selection'
+        }
     ]);
     
 
@@ -31,20 +39,22 @@ export const Discover = () => {
                 fetchPostsInFeed({
                     location: [position.coords.latitude, position.coords.longitude],
                     rating: selectedRating,
-                    range: selectedRange,
-                    genres: getCheckedGenres()
+                    maxDistance: selectedRange,
+                    genres: getCheckedGenres(),
+                    dateRange: getDates()
                 })
             });
         }
         else{
             fetchPostsInFeed({
                 rating: selectedRating,
-                range: selectedRange,
-                genres: getCheckedGenres()
+                maxDistance: selectedRange,
+                genres: getCheckedGenres(),
+                dateRange: getDates()
             })
         }
         
-    }, [selectedRating, genre, selectedRange])
+    }, [selectedRating, genre, x, date])
 
     const fetchPostsInFeed = (data) => {
         mySystem.getAllPosts(data,
@@ -53,9 +63,17 @@ export const Discover = () => {
             },
             () => {});
     }
-
-    const handleSelectRating = (event, value) =>
-    !value ? null : setSelectedRating(value);
+    const getDates = () => {
+        return [date[0].startDate, date[0].endDate];
+    }
+    const refresh = () => {
+        setX(!x)
+    }
+    const handleSelectRating = (event) =>{
+        if(event.target.value == selectedRating) setSelectedRating(null)
+        else setSelectedRating(event.target.value)
+    }
+    
 
     const handleChangeChecked = (id) => {
         const genreStateList = genre;
@@ -65,8 +83,11 @@ export const Discover = () => {
         setGenre(changeCheckedGenre);
       };
 
-    const handleChangeRange = (event, value) => {
-        setSelectedRange(value);
+    const handleChangeRange = (event) => {
+        setSelectedRange(event.target.value);
+    };
+    const handleChangeDate = (value) => {
+        setDate(value);
     };
 
     const getCheckedGenres = () => {
@@ -81,7 +102,9 @@ export const Discover = () => {
 
     
     return (
-        <div style={Background()} className="homeFilter">
+        <div 
+        style={Background()} 
+        className="homeFilter">
             <InitialNavbar/>
             <div className="space"/>
 
@@ -95,6 +118,9 @@ export const Discover = () => {
                         genre={genre}
                         changeChecked={handleChangeChecked}
                         changeRange={handleChangeRange}
+                        selectedDate={date}
+                        changeDate={handleChangeDate}
+                        refresh={refresh}
                     />
                 </div>
                 <div className='posts-wrap'>

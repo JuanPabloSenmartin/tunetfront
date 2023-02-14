@@ -2,16 +2,21 @@ import React from 'react';
 import { ratingList } from '../constants';
 import CheckboxProton from './checkBoxProton';
 import FilterListToggle from './filterListToggle';
-import SliderProton from './sliderProton';
+import {MyDateRangePicker} from './dateRangePicker';
 import '../../Styles/filter.css';
+import {FaChevronCircleRight} from 'react-icons/fa'
+
 
 const FilterPanel = ({
-  selectedRating,
-  selectRating,
-  genre,
-  changeChecked,
-  selectedRange,
-  changeRange,
+    selectedRating,
+    selectRating,
+    genre,
+    changeChecked,
+    selectedRange,
+    changeRange,
+    selectedDate,
+    changeDate,
+    refresh
 }) => (
   <div>
     <div className='input-group'>
@@ -25,8 +30,13 @@ const FilterPanel = ({
       ))}
     </div>
     <div className='input-group'>
-      <p className='label-range'>Proximity Range (km)</p>
-      <SliderProton value={selectedRange} changeRange={changeRange} />
+      <p className='label-range'>Maximum distance (km)</p>
+      <input type="number"
+                        placeholder="Maximum distance"
+                        value={selectedRange}
+                        name="distance"
+                        onChange={changeRange}/>
+      <FaChevronCircleRight className="max-distance-enter-icon" onClick={() => refresh()}/>                  
     </div>
     <div className='input-group'>
       <p className='labelFilter'>Star Rating</p>
@@ -36,7 +46,15 @@ const FilterPanel = ({
         selectToggle={selectRating}
       />
     </div>
+    <div className='input-group'>
+      <p className='labelFilter'>Date range</p>
+      <MyDateRangePicker 
+        selectedDate={selectedDate}
+        changeDate={changeDate}
+      />
+    </div>
   </div>
+  
 );
 
 export default FilterPanel;

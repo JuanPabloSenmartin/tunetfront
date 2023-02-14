@@ -21,7 +21,7 @@
 }
 .nav-menu{
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(6, auto);
     grid-gap: 100px;
     list-style: none;
     align-items: center;
@@ -42,15 +42,63 @@
 }
 .navLinkIcons{
     padding-right: 10px;
+    cursor: pointer;
 }
 .dropdown-logo{
     cursor: pointer;
     
 }
-
-.bars{
-    color: #fff;
+.notification-counter {
+    width: 7px;
+    height: 7px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 6px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: -35px;
+  }
+.notification-dropdown-link{
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: #222;
+    padding: 16px;
+    background-color: white;
 }
+.prof-link-notif{
+    margin-left: 30px;
+    font-size: 1.1rem;
+}
+
+.notification-dropdown-menu{
+    width: 500px;
+    position: absolute;
+    top: 90px;
+    right: 130px;
+    list-style: none;
+    text-align: start;
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+.img-closed-Icon-notif{
+    color: #000;
+    cursor: pointer;
+    float: right;
+}
+.img-closed-Icon-notif:hover{
+    color: #8860D0;
+}
+
+.bars-icon-narvbar{
+    color: #000;
+}
+
 .menu-icon{
     display: none;
 }
@@ -102,7 +150,7 @@
   cursor: pointer;
   }  
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1200px) {
     .NavbarItems{
         z-index: 99;
     }
@@ -140,6 +188,10 @@
     }
     .menu-icon{
         display: block;
+        
+    }
+    .menu-icon:hover{
+        cursor: pointer;
     }
     .nav-links-mobile{
         padding: 1.5rem;
@@ -150,4 +202,29 @@
         width: 80%;
         margin: auto;
     }
+    .notification-counter{
+        position: absolute;
+        margin-left: 50%;
+        margin-top: -35px;
+    }
+    .notification-dropdown-menu{
+        width: 500px;
+        position: absolute;
+        margin-top: 950px;
+        margin-right: 20%;
+        list-style: none;
+        text-align: start;
+        text-decoration: none;
+        font-size: 1.3rem;
+    }
+    .dropdown-menu {
+        width: 200px;
+        position: absolute;
+        margin-top: 950px;
+        margin-right: 40%;
+        list-style: none;
+        text-align: start;
+        text-decoration: none;
+        font-size: 1.3rem;
+      }
 }

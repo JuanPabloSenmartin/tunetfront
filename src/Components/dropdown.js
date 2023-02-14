@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import '../Styles/dropdown.css'
 import {useMySystem} from "../mySystem";
 import {useTokenManager} from "../tokenManager"
+import { Link } from "react-router-dom";
+
 
 
 
@@ -23,14 +25,16 @@ export const Dropdown= (props) => {
         <>
             <ul onClick={handleClick} className={click ? 'dropdown-menu clicked' : 'dropdown-menu'}>
                 <li key={0}>
-                    <a href={props.isArtist ? "editArtistProfile" : "editLocalProfile"} className="dropdown-link" onClick={() => setClick(false)}>
-                        Edit profile 
-                    </a>
+                    
+                    <Link to={props.isArtist ? "/editArtistProfile" : "/editLocalProfile"} className="dropdown-link" onClick={() => setClick(false)}>
+                        Edit profile
+                    </Link>
                 </li>
                 <li key={1}>
-                    <a href="login" onClick={handleLogOut} className="dropdown-link" >
+                    
+                    <Link to="/login" className="dropdown-link" onClick={handleLogOut}>
                         Sign out
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </>

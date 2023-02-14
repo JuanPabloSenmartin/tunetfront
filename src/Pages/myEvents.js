@@ -17,6 +17,13 @@ export const MyEvents = () => {
     const [selectedArtist, setSelectedArtist] = useState('postulated')
     const [selectedLocal, setSelectedLocal] = useState('accepted')
     const [change, setChange] = useState(false)
+    const [date, setDate] = useState([
+        {
+          startDate: null,
+          endDate: null,
+          key: 'selection'
+        }
+    ]);
     
 
     const [errorMsg, setErrorMsg] = useState(undefined)
@@ -29,7 +36,8 @@ export const MyEvents = () => {
         if(data.isArtist){
             mySystem.getPostsInfo({
                 token: token,
-                type: selectedArtist
+                type: selectedArtist,
+                date: getDates()
             },
                 (p) => {
                     setPosts(p)
@@ -39,7 +47,8 @@ export const MyEvents = () => {
         else{
             mySystem.getLocalPostsInfo({
                 token: token,
-                type: selectedLocal
+                type: selectedLocal,
+                date: getDates()
             },
                 (p) => {
                     setPosts(p)
@@ -50,6 +59,9 @@ export const MyEvents = () => {
     const refresh = () => {
         setChange(!change);
     }
+    const getDates = () => {
+        return [date[0].startDate, date[0].endDate];
+    }
     
 
     return(
@@ -59,7 +71,7 @@ export const MyEvents = () => {
 
             <h1 className="current-posts-title">{data.isArtist ? "Events" : "Events"}</h1>
 
-            {data.isArtist ? <ArtistEvents posts={posts} selected={selectedArtist} refresh={refresh} setSelected={setSelectedArtist} /> : <LocalEvents posts={posts} selected={selectedLocal} setSelected={setSelectedLocal}/>}
+            {data.isArtist ? <ArtistEvents posts={posts} selected={selectedArtist} refresh={refresh} setSelected={setSelectedArtist} date={date} setDate={setDate}/> : <LocalEvents posts={posts} selected={selectedLocal} setSelected={setSelectedLocal} refresh={refresh} date={date} setDate={setDate}/>}
 
         </div>
     )
