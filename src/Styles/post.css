@@ -17,9 +17,10 @@
     border: 3px outset #000;
 }
 .local-post-div{
-    width: 60%;
+    width: 70rem;
     margin:auto;
     margin-top: 50px;
+    background-color: white;
 }
 .local-post-inside-div{
     border: 3px outset #000;
@@ -76,12 +77,12 @@
 .local-post-artistList-ul-button-accept{
     width: 200px; height: 50px;
     font-size: 22px;
-    margin-left: 32%;
+    margin-left: 20%;
 }
 .local-post-reject-button{
     width: 200px; height: 50px;
     font-size: 22px;
-    margin-left: 50%;
+    
     margin-top: -10px;
 }
 .local-post-artistList-ul-button{

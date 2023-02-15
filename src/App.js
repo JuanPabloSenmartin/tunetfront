@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 // import './Styles/app.css'
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import {Login} from './Pages/login'
@@ -19,9 +19,16 @@ import { MyEvents } from "./Pages/myEvents"
 
 
 
-const App = () => (
-        // <div className="App">
-            <Routes >
+export default function App () {
+    useEffect(()=> {
+        document.body.style.background = 'rgb(2,0,0)';
+        document.body.style.background = 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(22,246,255,1) 0%, rgba(154,0,255,1) 100%)';
+        document.body.style.minWidth = '100vw';
+        document.body.style.minHeight = '100vh';
+    }, []);
+        
+    return(
+        <Routes >
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
@@ -70,9 +77,11 @@ const App = () => (
                 </RequireAuth>
             } />
         </Routes>
-        // </div>
+    )
+       
         
     
-)
+// );
+        }
 
-export default App
+// export default App

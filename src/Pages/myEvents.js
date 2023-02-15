@@ -65,7 +65,7 @@ export const MyEvents = () => {
     
 
     return(
-        <div style={Background()}>
+        <div >
             <HomeNavbar isArtist={data.isArtist}/>
             <div className="space"/>
 

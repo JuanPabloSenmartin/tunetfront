@@ -69,7 +69,7 @@ export const ViewLocalProfile = () => {
     }
 
     return (
-        <div style={Background()}>
+        <div >
             {isSignedIn ? <HomeNavbar isArtist= {true}/> : <InitialNavbar />}
             <div className="space"/>
 
@@ -89,28 +89,33 @@ export const ViewLocalProfile = () => {
 
                     <div className="viewProf-info">
                         <label className="profLabel"><FaUserAlt/> Username</label>
-                        {username != null ? username : unkwnow}
+                        <p className="viewProf-resp">{username != null ? username : unkwnow}</p>
                     </div>
                     <br/>
                     <div className="viewProf-info">
                         <label className="profLabel"><FaMapMarkerAlt/> Location</label>
-                        {location != null ? location : unkwnow}
+                        <p className="viewProf-resp">{location != null ? location : unkwnow}</p>
+                        
                     </div>
                     <br/>
                     <div className="viewProf-info">
                         <label className="profLabel"><FaPhone/> Phone number</label>
-                        {phoneNumber != null ? phoneNumber : unkwnow}
+                        <p className="viewProf-resp">{phoneNumber != null ? phoneNumber : unkwnow}</p>
+                        
                     </div>
                     <br/>
                     <div className="viewProf-info">
-                        <label className="DescriptionLabel"><FaPencilAlt/> Description</label>
-                        {description != null ? description : unkwnow}
+                        <label className="profLabel"><FaPencilAlt/> Description</label>
+                        <p className="viewProf-resp">{description != null ? description : unkwnow}</p>
+                        
                     </div>
                     <br/>
                     <div className="viewProf-info">
                         <label className="profLabel"><FaRegStar/> Rating</label>
-                        <Rating name="read-only" value={rating} readOnly />
-                        {rating == "0" || rating == null ? "No rating given yet" : ""}
+                        <div>
+                            <Rating className="viewProf-resp-rating" name="read-only" value={rating} readOnly />
+                            <p className="viewProf-resp">{rating == "0" || rating == null ? "No rating given yet" : ""}</p>
+                        </div>
                     </div>
                 </div>
 

@@ -153,7 +153,7 @@ export const EditArtistProfile = () => {
     }
 
     return (
-        <div style={Background()}>
+        <div >
             <HomeNavbar isArtist= {true}/>
             <div className="space"/>
             
@@ -183,6 +183,7 @@ export const EditArtistProfile = () => {
                     <div className="editProf-info">
                         <label className="profLabel"><FaUserAlt/> Username</label>
                         <input type="text"
+                            className="input-editProf"
                             placeholder="Username"
                             value={username}
                             name="username"
@@ -192,6 +193,7 @@ export const EditArtistProfile = () => {
                     <div className="editProf-info">
                         <label className="profLabel"><FaMapMarkerAlt/> Location</label>
                         <input type="text"
+                                className="input-editProf"
                                 placeholder="Location"
                                 value={location}
                                 name="location"
@@ -201,6 +203,7 @@ export const EditArtistProfile = () => {
                     <div className="editProf-info">
                         <label className="profLabel"><FaPhone/> Phone number</label>
                         <input type="text"
+                            className="input-editProf"
                             placeholder="Phone number"
                             value={phoneNumber}
                             name="phoneNumber"
@@ -211,6 +214,7 @@ export const EditArtistProfile = () => {
                     <div className="editProf-info">
                         <label className="DescriptionLabel"><FaPencilAlt/> Description</label>
                         <textarea rows="4" cols="50" type="text"
+                            className="input-textarea"
                             placeholder="Add a description"
                             value={description}
                             name="description"

@@ -141,7 +141,7 @@ export const EditLocalProfile = () => {
     
     return (
         
-        <div style={Background()}>
+        <div >
             <HomeNavbar isArtist= {false}/>
             <div className="space"/>
             
@@ -202,8 +202,9 @@ export const EditLocalProfile = () => {
                     <br/>
                     <br/>
                     <div className="editProf-info">
-                        <label className="DescriptionLabel"><FaPencilAlt/> Description</label>
+                        <label className="profLabel"><FaPencilAlt/> Description</label>
                         <textarea rows="4" cols="50" type="text"
+                            className="input-textarea"
                             placeholder="Add a description"
                             value={description}
                             name="description"
@@ -214,7 +215,7 @@ export const EditLocalProfile = () => {
                 <div className="editprof-rightside">
                     <div className="editProf-info">
                         <label className="profLabel"><FaRegStar/> Your Rating</label>
-                        <Rating name="read-only" value={rating} readOnly />
+                        <Rating className="rating-editprof" name="read-only" value={rating} readOnly />
                         
                     </div>
                     {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}

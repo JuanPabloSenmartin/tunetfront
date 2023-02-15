@@ -90,7 +90,6 @@ export const ArtistHome = () => {
     
     return (
         <div 
-        style={Background()}
          className="homeFilter">
             <HomeNavbar isArtist= {true}/>
             <div className="space"/>

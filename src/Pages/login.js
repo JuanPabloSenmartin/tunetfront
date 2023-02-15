@@ -68,7 +68,7 @@ export const Login = () => {
     
 
     return(
-        <div style={Background()} >
+        <div  >
             
             <InitialNavbar/>
             <div className="space"/>

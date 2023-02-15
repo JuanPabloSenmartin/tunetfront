@@ -26,13 +26,13 @@
   color: black;
   
 }
-
 .profLabel {
-  display: inline-block;
-  margin-right: 20px;
-  font-size: 130%;
-  color: black;
-  width: 30%;
+  font-size: 1.2rem;
+    color: black;
+    display: inline-block;
+    width: 30%;
+    /* margin-left: 1vw; */
+    float: left;
 }
 
 

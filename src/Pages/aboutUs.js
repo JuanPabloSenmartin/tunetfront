@@ -19,9 +19,7 @@ export const AboutUs = () => {
 
 
     return (
-        <div 
-        style={Background()}
-        >
+        <div >
             
             {data.isSignedIn ? <HomeNavbar isArtist= {data.isArtist}/> : <InitialNavbar/>}
             <div className="space"/>

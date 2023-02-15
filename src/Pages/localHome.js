@@ -64,7 +64,7 @@ export const LocalHome = () => {
 
 
     return (
-        <div style={Background()}>
+        <div >
             <HomeNavbar isArtist= {false}/>
             <div className="space"/>
 

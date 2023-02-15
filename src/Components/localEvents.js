@@ -59,7 +59,7 @@ export const LocalEvents = (props) => {
                 }
                 {props.posts.map((post, index)=> {
                     return(
-                        <div key={index}>
+                        <div className="localEvents-post-div" key={index}>
                             <div className="artistEvents-post-title-div">
                                 <div className="artistEvents-post-title-text">{post.title}</div>
                                 {selectedPost == post ? <FaSortDown className="artistEvents-post-title-icon-down" onClick={()=> setSelectedPost(undefined)}/> : <FaSortUp className="artistEvents-post-title-icon-up" onClick={()=> setSelectedPost(post)}/>}

@@ -76,7 +76,7 @@ export const Register = () => {
     }
 
     return(
-        <div style={Background()}>
+        <div >
             <InitialNavbar/>
             <div className="space"/>
 

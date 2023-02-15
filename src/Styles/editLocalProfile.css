@@ -70,31 +70,33 @@
   .imagesh1{
     color: black;
     text-align: center;
+    font-size: 1.7vw;
   }
 .editProf-image-div{
     width: 30%;
     height: 100%;
     float: left;
+    margin-left: 2rem;
 }
 .editProf-profPic-image{
     width: auto;
     height:auto;
     max-width: 100%;
     max-height: 100%;
-    margin-left: 10%;
 }
 .editProf-form-div{
-    width: 70%;
+    width: 60%;
     height: 100%;
     float: right;
 }
+
 .editProf-info{
   height: 15%;
   width: 100%;
   float: left;
 }
 .input-editProf{
-  width: 200px; 
+  width: 7vw; 
   height: 35px; 
   -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
   -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px; 
@@ -105,7 +107,7 @@
   box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
   border: solid 1px #cbc9c9;
   margin-left: -5px;
-  margin-top: 13px; 
+  /* margin-top: 13px;  */
   padding-left: 10px;
 }
 .profForm{
@@ -122,12 +124,12 @@
 }
 
 .submitButtonEdit {
-  font-size: 17px;
+  font-size: 1.1rem;
   text-align: center;
   color: white;
-  padding: 6px 25px 0px 20px;
+  padding: 6px 25px 0px 25px;
   text-decoration: none;
-  width: 170px; height: 40px; 
+  width: 11rem; height: 2.5rem; 
   -webkit-border-radius: 5px; 
   -moz-border-radius: 5px; 
   border-radius: 5px; 
@@ -150,7 +152,7 @@
 
 .profile-Settings{
   float: left;
-  width: 50%;
+  width: 35vw;
   height: 100%;
 }
 .editProf-top{

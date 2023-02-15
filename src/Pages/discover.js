@@ -103,7 +103,6 @@ export const Discover = () => {
     
     return (
         <div 
-        style={Background()} 
         className="homeFilter">
             <InitialNavbar/>
             <div className="space"/>

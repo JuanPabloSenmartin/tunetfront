@@ -66,9 +66,7 @@ export const Chat = () => {
         setSelectedUserChat(i)
     }
     return (
-        <div 
-        style={Background()}
-        >
+        <div >
             <HomeNavbar isArtist= {data.isMEartist}/>
             <div className="space"/>
 

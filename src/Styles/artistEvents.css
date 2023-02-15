@@ -1,6 +1,7 @@
 .artistEvents-main-div{
-    width: 70%;
+    width: 90rem;
     margin: 0 auto;
+    /* position: relative; */
 }
 .artistEvents-header{
     width: 100%;

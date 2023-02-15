@@ -95,53 +95,50 @@ export const CreatePost = (props) => {
 
 
     return (
-        <div style={Background()}>
+        <div >
             <HomeNavbar isArtist= {false}/>
             <div className="space"/>
 
-            <div className="titleEditProf">
-                   <h1 className="profh1">Create new post</h1>
-            </div>
-            <form onSubmit={handleSubmit} className="profForm">
-                
-                <div className="profile-Settings">
+            
+            <form onSubmit={handleSubmit} className="create-post-form">
+                <h1 className="createPostTitle">Create Post</h1>
+                <div className="create-post-info">
+                    
                     <div>
-                    <label className="profLabel">Title</label>
+                    <label className="profLabel-createPost">Title</label>
                         <input type="text"
+                        className="input-editProf"
                             placeholder="title"
                             value={title}
                             name="title"
                             onChange={titleChange}/>
                     </div>
                     <br/>
+                    <br/>
                     <div>
-                        <label className="profLabel">Date</label>
+                        <label className="profLabel-createPost">Date</label>
                         <input type="date"
+                            className="input-editProf"
                             placeholder="date"
                             value={date}
                             name="date"
                             onChange={dateChange}/>
                     </div>
                     <br/>
+                    <br/>
                     <div>
-                        <label className="DescriptionLabel">Description</label>
+                        <label className="DescriptionLabel-createPost">Description</label>
                         <textarea rows="6" cols="80" type="text"
+                            className="input-textarea"
                             placeholder="Add a description"
                             value={description}
                             name="description"
                             onChange={descriptionChange}/>
                     </div>
                     <br/>
-                    <div>
-                        <label className="profLabel">Genres</label>
-                        {/* {genres.map((item, index)=>{
-                            return(
-                                item
-                            )
-                        })} */}
-                        
-                    </div>
-                    {/* <GenreDropdown/> */}
+                    <br/>
+                    <label className="profLabel-createPost">Genres</label>
+                    <div className="select-genre-createPost">
                     <Select
                         defaultValue={[genreOptions[0]]}
                         isMulti
@@ -152,10 +149,9 @@ export const CreatePost = (props) => {
                         classNamePrefix="select"
                         onChange={(choice) => setGendres(choice)}
                     />
-                    
+                    </div>
                 </div>
-
-                <button type="submit" className="submitButtonEdit">Upload post</button>
+                <button type="submit" className="submitButton-createPost">Upload post</button>
 
                 {errorMsg && <div className="alertWarning" role="alert">{errorMsg}</div>}
                 {uncompleteFormMsg && <div className="alertWarning" role="alert">{uncompleteFormMsg}</div>}
